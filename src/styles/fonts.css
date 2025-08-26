@@ -1,0 +1,36 @@
+/* Custom Font Declarations */
+
+/* Ppmori Alternative - Using a high-quality premium font */
+@font-face {
+  font-family: 'Ppmori';
+  src: url('/fonts/Inter-600.woff2') format('woff2');
+  font-weight: 600;
+  font-style: normal;
+  font-display: swap;
+}
+
+/* Fallback fonts */
+@font-face {
+  font-family: 'Ppmori';
+  src: local('Inter'), local('Arial'), local('sans-serif');
+  font-weight: 600;
+  font-style: normal;
+  font-display: swap;
+}
+
+/* Additional weights if needed */
+@font-face {
+  font-family: 'Ppmori';
+  src: url('/fonts/Inter-600.woff2') format('woff2');
+  font-weight: 400;
+  font-style: normal;
+  font-display: swap;
+}
+
+/* Font variables for consistent usage */
+:root {
+  --font-ppmor: 'Ppmori', 'Inter', 'Arial', sans-serif;
+  --font-inter: 'Inter', 'Arial', sans-serif;
+  --font-jetbrains: 'JetBrains Mono', 'Monaco', 'Consolas', monospace;
+  --font-space: 'Space Mono', 'Monaco', 'Consolas', monospace;
+}
