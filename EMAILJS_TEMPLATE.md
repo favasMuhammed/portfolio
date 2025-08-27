@@ -93,7 +93,7 @@
                style="display: inline-block; background: linear-gradient(135deg, #a7e22e 0%, #8bc34a 100%); color: #000000; text-decoration: none; padding: 14px 28px; border-radius: 8px; font-weight: 600; font-size: 16px; margin: 8px; box-shadow: 0 0 20px rgba(167, 226, 46, 0.3); border: 1px solid #a7e22e;">
                 📧 Send Welcome Message
             </a>
-            <a href="https://favastp.dev" 
+            <a href="https://favasmuhammed.github.io/portfolio/" 
                style="display: inline-block; background: transparent; color: #a7e22e; text-decoration: none; padding: 14px 28px; border-radius: 8px; font-weight: 600; font-size: 16px; margin: 8px; border: 2px solid #a7e22e; transition: all 0.3s;">
                 🌐 View Portfolio
             </a>
