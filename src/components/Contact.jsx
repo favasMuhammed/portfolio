@@ -1,5 +1,6 @@
 import { useState, useEffect, useRef } from 'react'
 import { motion } from 'framer-motion'
+import ReCAPTCHA from 'react-google-recaptcha'
 
 const Contact = () => {
   const [isVisible, setIsVisible] = useState(false)
@@ -11,7 +12,9 @@ const Contact = () => {
   })
   const [isSubmitting, setIsSubmitting] = useState(false)
   const [isSubmitted, setIsSubmitted] = useState(false)
+  const [recaptchaToken, setRecaptchaToken] = useState('')
   const contactRef = useRef(null)
+  const recaptchaRef = useRef(null)
 
   useEffect(() => {
     const observer = new IntersectionObserver(
@@ -40,6 +43,13 @@ const Contact = () => {
 
   const handleSubmit = async (e) => {
     e.preventDefault()
+    
+    // reCAPTCHA validation
+    if (!recaptchaToken) {
+      alert('Please verify that you are not a robot')
+      return
+    }
+    
     setIsSubmitting(true)
     
     // Prepare WhatsApp message with proper formatting
@@ -88,10 +98,18 @@ Sent from favastp.dev portfolio`
         // Reset form after successful redirect
         setTimeout(() => {
           setFormData({ name: '', email: '', subject: '', message: '' })
+          setRecaptchaToken('')
+          if (recaptchaRef.current) {
+            recaptchaRef.current.reset()
+          }
           setIsSubmitted(false)
         }, 2000)
       }, 1000)
     }, 1500)
+  }
+
+  const handleRecaptchaChange = (token) => {
+    setRecaptchaToken(token)
   }
 
   const contactInfo = [
@@ -233,7 +251,17 @@ Sent from favastp.dev portfolio`
                 />
               </div>
               
-              <button type="submit" className="btn btn-primary w-full py-3 sm:py-4 px-6 sm:px-8 bg-gradient-to-r from-primary to-primary-dark rounded-md text-dark no-underline font-semibold transition-all duration-300 hover:from-primary-dark hover:to-primary hover:-translate-y-1 hover:shadow-lg disabled:opacity-50 disabled:cursor-not-allowed text-sm sm:text-base" disabled={isSubmitting}>
+              {/* reCAPTCHA */}
+              <div className="flex justify-center">
+                <ReCAPTCHA
+                  ref={recaptchaRef}
+                  sitekey={import.meta.env.VITE_RECAPTCHA_SITE_KEY || '6LdWwbQrAAAAALATgchrnKw5PbXvfvygSF8GnER5'}
+                  onChange={handleRecaptchaChange}
+                  theme="dark"
+                />
+              </div>
+              
+              <button type="submit" className="btn btn-primary w-full py-3 sm:py-4 px-6 sm:px-8 bg-gradient-to-r from-primary to-primary-dark rounded-md text-dark no-underline font-semibold transition-all duration-300 hover:from-primary-dark hover:to-primary hover:-translate-y-1 hover:shadow-lg disabled:opacity-50 disabled:cursor-not-allowed text-sm sm:text-base" disabled={isSubmitting || !recaptchaToken}>
                 {isSubmitting ? (
                   <span className="flex items-center gap-2 justify-center">
                     <i className="fas fa-spinner fa-spin"></i>

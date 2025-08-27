@@ -1,11 +1,14 @@
-import { useState } from 'react'
+import { useState, useRef } from 'react'
 import { motion } from 'framer-motion'
 import emailjs from '@emailjs/browser'
+import ReCAPTCHA from 'react-google-recaptcha'
 
 const Newsletter = () => {
   const [email, setEmail] = useState('')
   const [status, setStatus] = useState('') // 'loading', 'success', 'error'
   const [message, setMessage] = useState('')
+  const [recaptchaToken, setRecaptchaToken] = useState('')
+  const recaptchaRef = useRef(null)
 
   const handleSubmit = async (e) => {
     e.preventDefault()
@@ -15,6 +18,13 @@ const Newsletter = () => {
     if (!emailRegex.test(email)) {
       setStatus('error')
       setMessage('Please enter a valid email address')
+      return
+    }
+
+    // reCAPTCHA validation
+    if (!recaptchaToken) {
+      setStatus('error')
+      setMessage('Please verify that you are not a robot')
       return
     }
 
@@ -51,6 +61,10 @@ The subscriber is interested in your thoughts on building digital experiences an
       setStatus('success')
       setMessage('Thanks for subscribing! You\'ll hear from me soon.')
       setEmail('')
+      setRecaptchaToken('')
+      if (recaptchaRef.current) {
+        recaptchaRef.current.reset()
+      }
       
       // Reset status after 5 seconds
       setTimeout(() => {
@@ -69,6 +83,10 @@ The subscriber is interested in your thoughts on building digital experiences an
         setMessage('')
       }, 5000)
     }
+  }
+
+  const handleRecaptchaChange = (token) => {
+    setRecaptchaToken(token)
   }
 
   return (
@@ -98,16 +116,27 @@ The subscriber is interested in your thoughts on building digital experiences an
             />
           </div>
 
+          {/* reCAPTCHA */}
+          <div className="flex justify-center">
+            <ReCAPTCHA
+              ref={recaptchaRef}
+              sitekey={import.meta.env.VITE_RECAPTCHA_SITE_KEY || '6LdWwbQrAAAAALATgchrnKw5PbXvfvygSF8GnER5'}
+              onChange={handleRecaptchaChange}
+              theme="dark"
+              size="compact"
+            />
+          </div>
+
           <motion.button
             type="submit"
-            disabled={status === 'loading' || !email}
+            disabled={status === 'loading' || !email || !recaptchaToken}
             className={`w-full py-3 rounded-lg font-semibold transition-all duration-300 font-grotesk ${
-              status === 'loading' || !email
+              status === 'loading' || !email || !recaptchaToken
                 ? 'bg-gray-600 text-gray-400 cursor-not-allowed'
                 : 'bg-primary text-dark hover:bg-primary-dark hover:-translate-y-1 hover:shadow-lg hover:shadow-primary/25'
             }`}
-            whileHover={status !== 'loading' && email ? { scale: 1.02 } : {}}
-            whileTap={status !== 'loading' && email ? { scale: 0.98 } : {}}
+            whileHover={status !== 'loading' && email && recaptchaToken ? { scale: 1.02 } : {}}
+            whileTap={status !== 'loading' && email && recaptchaToken ? { scale: 0.98 } : {}}
           >
             {status === 'loading' ? (
               <div className="flex items-center justify-center gap-2">
