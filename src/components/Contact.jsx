@@ -42,7 +42,7 @@ const Contact = () => {
     e.preventDefault()
     setIsSubmitting(true)
     
-    // Prepare WhatsApp message
+    // Prepare WhatsApp message with proper formatting
     const whatsappMessage = `*New Portfolio Contact Message*
 
 *Name:* ${formData.name}
@@ -62,11 +62,34 @@ Sent from favastp.dev portfolio`
       setIsSubmitting(false)
       setIsSubmitted(true)
       
-      // Redirect to WhatsApp after a brief delay
+      // Use different approach for mobile vs desktop
       setTimeout(() => {
-        window.open(whatsappUrl, '_blank')
-        setFormData({ name: '', email: '', subject: '', message: '' })
-        setIsSubmitted(false)
+        try {
+          // Detect if it's mobile
+          const isMobile = /Android|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent)
+          
+          if (isMobile) {
+            // For mobile, use direct navigation to ensure app opening
+            window.location.href = whatsappUrl
+          } else {
+            // For desktop, try window.open first, fallback to location
+            const newWindow = window.open(whatsappUrl, '_blank', 'noopener,noreferrer')
+            if (!newWindow || newWindow.closed || typeof newWindow.closed == 'undefined') {
+              // Popup blocked, use direct navigation
+              window.location.href = whatsappUrl
+            }
+          }
+        } catch (error) {
+          console.error('Error opening WhatsApp:', error)
+          // Fallback: try direct navigation
+          window.location.href = whatsappUrl
+        }
+        
+        // Reset form after successful redirect
+        setTimeout(() => {
+          setFormData({ name: '', email: '', subject: '', message: '' })
+          setIsSubmitted(false)
+        }, 2000)
       }, 1000)
     }, 1500)
   }
@@ -220,14 +243,14 @@ Sent from favastp.dev portfolio`
                 ) : isSubmitted ? (
                   <span className="flex items-center gap-2 justify-center">
                     <i className="fab fa-whatsapp"></i>
-                    <span className="hidden sm:inline">Opening WhatsApp...</span>
-                    <span className="sm:hidden">Opening...</span>
+                    <span className="hidden sm:inline">Redirecting to WhatsApp...</span>
+                    <span className="sm:hidden">Redirecting...</span>
                   </span>
                 ) : (
                   <span className="flex items-center gap-2 justify-center">
                     <i className="fab fa-whatsapp"></i>
                     <span className="hidden sm:inline">Send via WhatsApp</span>
-                    <span className="sm:hidden">Send Message</span>
+                    <span className="sm:hidden">WhatsApp</span>
                   </span>
                 )}
               </button>

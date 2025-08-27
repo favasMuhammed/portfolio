@@ -163,15 +163,24 @@ body {
 
 /* Timeline specific positioning that's hard to do with Tailwind */
 .timeline-mark {
-    position: absolute;
-    width: 1px;
-    height: 16px;
-    background: #555;
-    transform: translateX(-50%);
-    top: -8px;
-    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
-    cursor: pointer;
-    z-index: 5;
+  position: absolute;
+  width: 1px;
+  height: 16px;
+  background: #555;
+  transform: translateX(-50%);
+  top: -8px;
+  transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+  cursor: pointer;
+  z-index: 5;
+  touch-action: manipulation;
+}
+
+@media (max-width: 768px) {
+  .timeline-mark {
+    width: 2px;
+    height: 18px;
+    top: -9px;
+  }
 }
 
 .timeline-mark.active {
@@ -195,17 +204,34 @@ body {
 }
 
 .timeline-label {
-    position: absolute;
-    font-size: 0.8rem;
-    color: #888;
-    font-family: 'Courier New', monospace;
-    transform: translateX(-50%);
-    font-weight: 400;
-    top: 0;
-    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  position: absolute;
+  font-size: 0.8rem;
+  color: #888;
+  font-family: 'Courier New', monospace;
+  transform: translateX(-50%);
+  font-weight: 400;
+  top: 0;
+  transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
   cursor: pointer;
-    user-select: none;
-    letter-spacing: 0.05em;
+  user-select: none;
+  letter-spacing: 0.05em;
+  touch-action: manipulation;
+  padding: 2px 4px;
+  border-radius: 4px;
+}
+
+@media (max-width: 768px) {
+  .timeline-label {
+    font-size: 0.7rem;
+    padding: 4px 6px;
+  }
+}
+
+@media (max-width: 480px) {
+  .timeline-label {
+    font-size: 0.65rem;
+    padding: 3px 5px;
+  }
 }
 
 .timeline-label.active {
@@ -213,6 +239,39 @@ body {
     font-weight: 600;
     transform: translateX(-50%) scale(1.1);
     text-shadow: 0 0 6px rgba(212, 255, 0, 0.5);
+    background: rgba(212, 255, 0, 0.1);
+}
+
+@media (max-width: 768px) {
+  .timeline-label.active {
+    transform: translateX(-50%) scale(1.05);
+  }
+  
+  /* Mobile timeline improvements */
+  .timeline-scrubber {
+    height: 3px !important;
+  }
+  
+  .timeline-handle {
+    width: 18px !important;
+    height: 18px !important;
+    box-shadow: 0 0 10px rgba(167, 226, 46, 0.6) !important;
+  }
+  
+  .timeline-text-box {
+    line-height: 1.4 !important;
+  }
+}
+
+@media (max-width: 480px) {
+  .timeline-scrubber {
+    height: 4px !important;
+  }
+  
+  .timeline-handle {
+    width: 20px !important;
+    height: 20px !important;
+  }
 }
 
 /* Floating elements positioning */
@@ -224,22 +283,26 @@ body {
 
 /* Timeline marks positioning */
 .timeline-mark[data-year="2002"] { left: 0%; }
-.timeline-mark[data-year="2008"] { left: 14.28%; }
-.timeline-mark[data-year="2014"] { left: 28.57%; }
-.timeline-mark[data-year="2018"] { left: 42.85%; }
-.timeline-mark[data-year="2021"] { left: 57.14%; }
-.timeline-mark[data-year="2022"] { left: 71.42%; }
-.timeline-mark[data-year="2023"] { left: 85.71%; }
+.timeline-mark[data-year="2008"] { left: 11.11%; }
+.timeline-mark[data-year="2014"] { left: 22.22%; }
+.timeline-mark[data-year="2018"] { left: 33.33%; }
+.timeline-mark[data-year="2020"] { left: 44.44%; }
+.timeline-mark[data-year="2021"] { left: 55.55%; }
+.timeline-mark[data-year="2022"] { left: 66.66%; }
+.timeline-mark[data-year="2023"] { left: 77.77%; }
+.timeline-mark[data-year="2024"] { left: 88.88%; }
 .timeline-mark[data-year="2025"] { left: 100%; }
 
 /* Timeline labels positioning */
 .timeline-label[data-year="2002"] { left: 0%; }
-.timeline-label[data-year="2008"] { left: 14.28%; }
-.timeline-label[data-year="2014"] { left: 28.57%; }
-.timeline-label[data-year="2018"] { left: 42.85%; }
-.timeline-label[data-year="2021"] { left: 57.14%; }
-.timeline-label[data-year="2022"] { left: 71.42%; }
-.timeline-label[data-year="2023"] { left: 85.71%; }
+.timeline-label[data-year="2008"] { left: 11.11%; }
+.timeline-label[data-year="2014"] { left: 22.22%; }
+.timeline-label[data-year="2018"] { left: 33.33%; }
+.timeline-label[data-year="2020"] { left: 44.44%; }
+.timeline-label[data-year="2021"] { left: 55.55%; }
+.timeline-label[data-year="2022"] { left: 66.66%; }
+.timeline-label[data-year="2023"] { left: 77.77%; }
+.timeline-label[data-year="2024"] { left: 88.88%; }
 .timeline-label[data-year="2025"] { left: 100%; }
 
 /* Page load animation */

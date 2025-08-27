@@ -11,19 +11,20 @@ const InteractiveTimeline = () => {
 
   // Timeline data with fun and casual content
   const timelineData = {
-    2002: "Born. Didn't do too much that year.",
-    2008: "Started school. Finally learned to read without moving my lips.",
-    2014: "Built my first website. It was terrible, but I was proud.",
-    2018: "High school done. Chose Computer Science because... well, why not?",
-    2021: "Started college. First time living away from home. Chaos ensued.",
-    2022: "Freelancing as a designer. Realized I'm better at coding than art.",
-    2023: "Intern → Full-Stack Developer. Finally getting paid to break things!",
-    2024: "Project Coordinator now. Somehow people trust me to lead teams.",
-    2025: "Final year student + working. Coffee consumption at all-time high."
+    2002: "Born. Made the world slightly more interesting.",
+    2008: "Started school. Mastered daydreaming professionally.",
+    2014: "Teenage years. Knew everything. I was wrong.",
+    2018: "High school done. Chose Bio Science.",
+    2020: "COVID happened. Discovered graphic design.",
+    2021: "Started CSE. From DNA to databases.",
+    2022: "Freelancing design + coding. Still figuring it out.",
+    2023: "Became Full-Stack Developer. Getting paid to puzzle.",
+    2024: "Project Coordinator. Leading teams somehow.",
+    2025: "College done. Building my own company now."
   }
 
   const years = Object.keys(timelineData).map(Number).sort((a, b) => a - b)
-  const markPositions = [0, 14.28, 28.57, 42.85, 57.14, 71.42, 85.71, 100]
+  const markPositions = [0, 11.11, 22.22, 33.33, 44.44, 55.55, 66.66, 77.77, 88.88, 100]
 
   const updateTimeline = (percentage) => {
     setTimelinePosition(percentage)
@@ -65,6 +66,7 @@ const InteractiveTimeline = () => {
 
   const handleMouseMove = (e) => {
     if (isDragging) {
+      e.preventDefault()
       updateTimelineFromEvent(e)
     }
   }
@@ -78,7 +80,8 @@ const InteractiveTimeline = () => {
     if (!timelineScrubberRef.current) return
     
     const rect = timelineScrubberRef.current.getBoundingClientRect()
-    const x = e.clientX - rect.left
+    const clientX = e.touches ? e.touches[0].clientX : e.clientX
+    const x = clientX - rect.left
     const percentage = Math.max(0, Math.min(100, (x / rect.width) * 100))
     
     updateTimeline(percentage)
@@ -133,10 +136,14 @@ const InteractiveTimeline = () => {
   useEffect(() => {
     document.addEventListener('mousemove', handleMouseMove)
     document.addEventListener('mouseup', handleMouseUp)
+    document.addEventListener('touchmove', handleMouseMove, { passive: false })
+    document.addEventListener('touchend', handleMouseUp)
     
     return () => {
       document.removeEventListener('mousemove', handleMouseMove)
       document.removeEventListener('mouseup', handleMouseUp)
+      document.removeEventListener('touchmove', handleMouseMove)
+      document.removeEventListener('touchend', handleMouseUp)
     }
   }, [isDragging])
 
@@ -147,17 +154,18 @@ const InteractiveTimeline = () => {
   }, [])
 
   return (
-    <div className="about-content-panel bg-gray-800 rounded-none p-4 sm:p-8 lg:p-12 py-8 sm:py-12 lg:py-16 relative min-h-[400px] sm:min-h-[500px] lg:min-h-[600px] flex flex-col items-center justify-between w-full">
+    <div className="about-content-panel bg-zinc-900 rounded-none p-3 sm:p-6 md:p-8 lg:p-12 py-6 sm:py-10 md:py-12 lg:py-16 relative min-h-[350px] sm:min-h-[450px] md:min-h-[500px] lg:min-h-[600px] flex flex-col items-center justify-between w-full">
       <div 
-        className="timeline-text-box relative top-auto left-auto transform-none bg-transparent border-none rounded-none py-4 sm:py-6 lg:py-8 min-w-auto max-w-[700px] text-center z-20 backdrop-filter-none text-gray-200 text-sm sm:text-base lg:text-lg leading-relaxed font-mono transition-all duration-300 opacity-100 whitespace-pre-wrap font-normal shadow-none outline-none bg-transparent m-auto flex-1 flex items-center justify-center px-4"
+        className="timeline-text-box relative top-auto left-auto transform-none bg-transparent border-none rounded-none py-3 sm:py-4 md:py-6 lg:py-8 min-w-auto max-w-[280px] sm:max-w-[400px] md:max-w-[550px] lg:max-w-[700px] text-center z-20 backdrop-filter-none text-gray-200 text-xs sm:text-sm md:text-base lg:text-lg leading-relaxed font-mono transition-all duration-500 ease-out opacity-100 whitespace-pre-wrap font-normal shadow-none outline-none m-auto flex-1 flex items-center justify-center px-2 sm:px-4"
       >
         {timelineData[currentYear]}
       </div>
       
       <div 
         ref={timelineScrubberRef}
-        className="timeline-scrubber relative w-4/5 h-0.5 bg-gray-600 rounded-none my-8 sm:my-12 lg:my-16 mx-auto cursor-pointer overflow-visible self-center"
+        className="timeline-scrubber relative w-[85%] sm:w-4/5 h-0.5 sm:h-1 bg-gray-600 rounded-none my-6 sm:my-8 md:my-10 lg:my-16 mx-auto cursor-pointer overflow-visible self-center touch-none"
         onMouseDown={handleMouseDown}
+        onTouchStart={handleMouseDown}
         onClick={handleClick}
       >
         <div 
@@ -167,7 +175,7 @@ const InteractiveTimeline = () => {
         />
         <div 
           ref={timelineHandleRef}
-          className="timeline-handle absolute top-1/2 w-3.5 h-3.5 bg-primary rounded-full transform -translate-x-1/2 -translate-y-1/2 cursor-grab transition-all duration-300 ease-out shadow-lg border-none z-10"
+          className="timeline-handle absolute top-1/2 w-4 h-4 sm:w-3.5 sm:h-3.5 bg-primary rounded-full transform -translate-x-1/2 -translate-y-1/2 cursor-grab active:cursor-grabbing transition-all duration-500 ease-out shadow-lg border-none z-10 hover:scale-110 active:scale-95"
           style={{ 
             left: `${timelinePosition}%`,
             animation: currentYear !== 2002 ? 'pulse 0.6s ease-in-out' : 'none'
@@ -205,8 +213,8 @@ const InteractiveTimeline = () => {
         </div>
       </div>
       
-              <div className="timeline-instruction text-center text-gray-500 text-xs font-mono mt-4 sm:mt-6 font-normal tracking-wider transition-all duration-300 cursor-default select-none uppercase self-center hover:text-text hover:scale-105 hover:opacity-100">
-        Scrub the timeline
+              <div className="timeline-instruction text-center text-gray-500 text-xs sm:text-sm font-mono mt-3 sm:mt-4 md:mt-6 font-normal tracking-wider transition-all duration-500 ease-out cursor-default select-none uppercase self-center hover:text-text hover:scale-105 hover:opacity-100 px-2">
+        Drag or tap the timeline
       </div>
     </div>
   )
