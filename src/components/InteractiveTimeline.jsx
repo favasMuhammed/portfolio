@@ -213,8 +213,8 @@ const InteractiveTimeline = () => {
         </div>
       </div>
       
-              <div className="timeline-instruction text-center text-gray-500 text-xs sm:text-sm font-mono mt-3 sm:mt-4 md:mt-6 font-normal tracking-wider transition-all duration-500 ease-out cursor-default select-none uppercase self-center hover:text-text hover:scale-105 hover:opacity-100 px-2">
-        Drag or tap the timeline
+      <div className="timeline-instruction text-center text-gray-500 text-xs sm:text-sm font-mono mt-4 sm:mt-5 md:mt-6 font-normal tracking-wider transition-all duration-500 ease-out cursor-default select-none uppercase self-center hover:text-text hover:scale-105 hover:opacity-100 px-2 opacity-0 md:hidden">
+        .
       </div>
     </div>
   )
