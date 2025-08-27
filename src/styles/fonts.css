@@ -1,36 +1,41 @@
 /* Custom Font Declarations */
 
-/* Ppmori Alternative - Using a high-quality premium font */
+/* Departure Mono - Primary font */
 @font-face {
-  font-family: 'Ppmori';
-  src: url('/fonts/Inter-600.woff2') format('woff2');
-  font-weight: 600;
-  font-style: normal;
-  font-display: swap;
-}
-
-/* Fallback fonts */
-@font-face {
-  font-family: 'Ppmori';
-  src: local('Inter'), local('Arial'), local('sans-serif');
-  font-weight: 600;
-  font-style: normal;
-  font-display: swap;
-}
-
-/* Additional weights if needed */
-@font-face {
-  font-family: 'Ppmori';
-  src: url('/fonts/Inter-600.woff2') format('woff2');
+  font-family: 'Departure Mono';
+  src: url('/fonts/DepartureMono-Regular.woff2') format('woff2'),
+       url('/fonts/DepartureMono-Regular.woff') format('woff');
   font-weight: 400;
+  font-style: normal;
+  font-display: swap;
+}
+
+/* Departure Mono for different weights */
+@font-face {
+  font-family: 'Departure Mono';
+  src: url('/fonts/DepartureMono-Regular.woff2') format('woff2'),
+       url('/fonts/DepartureMono-Regular.woff') format('woff');
+  font-weight: 600;
+  font-style: normal;
+  font-display: swap;
+}
+
+/* PP Mori SemiBold - For special display text */
+@font-face {
+  font-family: 'PP Mori';
+  src: url('/fonts/PPMori-SemiBold.woff2') format('woff2'),
+       url('/fonts/PPMori-SemiBold.woff') format('woff');
+  font-weight: 600;
   font-style: normal;
   font-display: swap;
 }
 
 /* Font variables for consistent usage */
 :root {
-  --font-ppmor: 'Ppmori', 'Inter', 'Arial', sans-serif;
-  --font-inter: 'Inter', 'Arial', sans-serif;
-  --font-jetbrains: 'JetBrains Mono', 'Monaco', 'Consolas', monospace;
-  --font-space: 'Space Mono', 'Monaco', 'Consolas', monospace;
+  --font-departure: 'Departure Mono', 'SF Mono', 'Monaco', 'Menlo', 'Ubuntu Mono', monospace;
+  --font-primary: 'Departure Mono', 'SF Mono', 'Monaco', 'Menlo', 'Ubuntu Mono', monospace;
+  --font-mono: 'Departure Mono', 'SF Mono', 'Monaco', 'Menlo', 'Ubuntu Mono', monospace;
+  --font-grotesk: 'Space Grotesk', 'Inter', 'Arial', sans-serif;
+  --font-reading: 'Space Grotesk', 'Inter', 'Arial', sans-serif;
+  --font-mori: 'PP Mori', Georgia, serif;
 }

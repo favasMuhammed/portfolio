@@ -1,10 +1,12 @@
 import { useState, useEffect } from 'react'
 import { motion, AnimatePresence } from 'framer-motion'
+import { Link, useLocation } from 'react-router-dom'
 
 const Navbar = () => {
   const [isScrolled, setIsScrolled] = useState(false)
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false)
   const [hoveredLink, setHoveredLink] = useState(null)
+  const location = useLocation()
 
   useEffect(() => {
     const handleScroll = () => {
@@ -15,6 +17,13 @@ const Navbar = () => {
   }, [])
 
   const scrollToSection = (sectionId) => {
+    // If we're not on the homepage, navigate to homepage first
+    if (location.pathname !== '/') {
+      window.location.href = `/#${sectionId}`
+      return
+    }
+    
+    // If we're on homepage, scroll to section
     const element = document.getElementById(sectionId)
     if (element) {
       const offsetTop = element.offsetTop - 80
@@ -24,10 +33,11 @@ const Navbar = () => {
   }
 
   const navItems = [
-    { id: 'thoughts', label: 'Thoughts' },
-    { id: 'experiments', label: 'Experiments' },
-    { id: 'work', label: 'Work' },
-    { id: 'experience', label: 'Experience' }
+    { id: 'thoughts', label: 'Thoughts', isExternal: true, path: '/thoughts' },
+    { id: 'skills', label: 'Skills' },
+    { id: 'projects', label: 'Projects' },
+    { id: 'experience', label: 'Experience' },
+    { id: 'contact', label: 'Contact' }
   ]
 
   return (
@@ -45,7 +55,13 @@ const Navbar = () => {
 
       {/* Brand / Logo */}
       <motion.button
-        onClick={() => scrollToSection('home')}
+        onClick={() => {
+          if (location.pathname !== '/') {
+            window.location.href = '/'
+          } else {
+            scrollToSection('home')
+          }
+        }}
         className="relative font-mono text-base sm:text-lg font-semibold text-gray-800 dark:text-gray-100 group"
         whileHover={{ scale: 1.05, rotate: 2 }}
         whileTap={{ scale: 0.95 }}
@@ -58,31 +74,63 @@ const Navbar = () => {
       {/* Desktop Links */}
       <div className="hidden md:flex gap-6 lg:gap-8">
         {navItems.map((item) => (
-          <motion.button
-            key={item.id}
-            onClick={() => scrollToSection(item.id)}
-            onHoverStart={() => setHoveredLink(item.id)}
-            onHoverEnd={() => setHoveredLink(null)}
-            className="relative text-gray-700 dark:text-gray-300 text-sm font-medium py-2 px-3 rounded-lg group transition-colors"
-            whileHover={{ scale: 1.05, y: -2 }}
-            whileTap={{ scale: 0.95 }}
-          >
-            <span className="relative z-10">{item.label}</span>
+          item.isExternal ? (
+            <motion.div
+              key={item.id}
+              onHoverStart={() => setHoveredLink(item.id)}
+              onHoverEnd={() => setHoveredLink(null)}
+              className="relative"
+              whileHover={{ scale: 1.05, y: -2 }}
+              whileTap={{ scale: 0.95 }}
+            >
+              <Link
+                to={item.path}
+                className="relative text-gray-700 dark:text-gray-300 text-sm font-medium py-2 px-3 rounded-lg group transition-colors no-underline block"
+              >
+                <span className="relative z-10">{item.label}</span>
 
-            {/* Liquid Underlay */}
-            <span className="absolute inset-0 bg-gradient-to-r from-purple-500/10 via-pink-500/5 to-cyan-500/10 rounded-lg opacity-0 group-hover:opacity-100 transition-all duration-500 -z-10" />
+                {/* Liquid Underlay */}
+                <span className="absolute inset-0 bg-gradient-to-r from-purple-500/10 via-pink-500/5 to-cyan-500/10 rounded-lg opacity-0 group-hover:opacity-100 transition-all duration-500 -z-10" />
 
-            {/* Animated Underline */}
-            <motion.span
-              className="absolute -bottom-1 left-0 h-[2px] bg-gradient-to-r from-purple-500 via-pink-500 to-cyan-500 rounded-full"
-              initial={{ width: 0 }}
-              animate={{ width: hoveredLink === item.id ? '100%' : 0 }}
-              transition={{ duration: 0.4, ease: 'easeInOut' }}
-            />
+                {/* Animated Underline */}
+                <motion.span
+                  className="absolute -bottom-1 left-0 h-[2px] bg-gradient-to-r from-purple-500 via-pink-500 to-cyan-500 rounded-full"
+                  initial={{ width: 0 }}
+                  animate={{ width: hoveredLink === item.id ? '100%' : 0 }}
+                  transition={{ duration: 0.4, ease: 'easeInOut' }}
+                />
 
-            {/* Glow Effect */}
-            <span className="absolute inset-0 bg-gradient-to-r from-purple-500/5 to-transparent rounded-lg opacity-0 group-hover:opacity-100 transition-all duration-700 -z-20 blur-sm" />
-          </motion.button>
+                {/* Glow Effect */}
+                <span className="absolute inset-0 bg-gradient-to-r from-purple-500/5 to-transparent rounded-lg opacity-0 group-hover:opacity-100 transition-all duration-700 -z-20 blur-sm" />
+              </Link>
+            </motion.div>
+          ) : (
+            <motion.button
+              key={item.id}
+              onClick={() => scrollToSection(item.id)}
+              onHoverStart={() => setHoveredLink(item.id)}
+              onHoverEnd={() => setHoveredLink(null)}
+              className="relative text-gray-700 dark:text-gray-300 text-sm font-medium py-2 px-3 rounded-lg group transition-colors"
+              whileHover={{ scale: 1.05, y: -2 }}
+              whileTap={{ scale: 0.95 }}
+            >
+              <span className="relative z-10">{item.label}</span>
+
+              {/* Liquid Underlay */}
+              <span className="absolute inset-0 bg-gradient-to-r from-purple-500/10 via-pink-500/5 to-cyan-500/10 rounded-lg opacity-0 group-hover:opacity-100 transition-all duration-500 -z-10" />
+
+              {/* Animated Underline */}
+              <motion.span
+                className="absolute -bottom-1 left-0 h-[2px] bg-gradient-to-r from-purple-500 via-pink-500 to-cyan-500 rounded-full"
+                initial={{ width: 0 }}
+                animate={{ width: hoveredLink === item.id ? '100%' : 0 }}
+                transition={{ duration: 0.4, ease: 'easeInOut' }}
+              />
+
+              {/* Glow Effect */}
+              <span className="absolute inset-0 bg-gradient-to-r from-purple-500/5 to-transparent rounded-lg opacity-0 group-hover:opacity-100 transition-all duration-700 -z-20 blur-sm" />
+            </motion.button>
+          )
         ))}
       </div>
 
@@ -115,16 +163,34 @@ const Navbar = () => {
           >
             <div className="p-4 flex flex-col gap-2">
               {navItems.map((item) => (
-                <motion.button
-                  key={item.id}
-                  onClick={() => scrollToSection(item.id)}
-                  className="relative text-gray-700 dark:text-gray-300 text-base py-3 px-4 rounded-lg group text-left w-full"
-                  whileHover={{ x: 4, scale: 1.02 }}
-                  whileTap={{ scale: 0.98 }}
-                >
-                  <span className="relative z-10">{item.label}</span>
-                  <span className="absolute inset-0 bg-purple-500/10 rounded-lg opacity-0 group-hover:opacity-100 transition-all duration-500 -z-10" />
-                </motion.button>
+                item.isExternal ? (
+                  <motion.div
+                    key={item.id}
+                    className="relative"
+                    whileHover={{ x: 4, scale: 1.02 }}
+                    whileTap={{ scale: 0.98 }}
+                  >
+                    <Link
+                      to={item.path}
+                      onClick={() => setIsMobileMenuOpen(false)}
+                      className="relative text-gray-700 dark:text-gray-300 text-base py-3 px-4 rounded-lg group text-left w-full no-underline block"
+                    >
+                      <span className="relative z-10">{item.label}</span>
+                      <span className="absolute inset-0 bg-purple-500/10 rounded-lg opacity-0 group-hover:opacity-100 transition-all duration-500 -z-10" />
+                    </Link>
+                  </motion.div>
+                ) : (
+                  <motion.button
+                    key={item.id}
+                    onClick={() => scrollToSection(item.id)}
+                    className="relative text-gray-700 dark:text-gray-300 text-base py-3 px-4 rounded-lg group text-left w-full"
+                    whileHover={{ x: 4, scale: 1.02 }}
+                    whileTap={{ scale: 0.98 }}
+                  >
+                    <span className="relative z-10">{item.label}</span>
+                    <span className="absolute inset-0 bg-purple-500/10 rounded-lg opacity-0 group-hover:opacity-100 transition-all duration-500 -z-10" />
+                  </motion.button>
+                )
               ))}
             </div>
           </motion.div>

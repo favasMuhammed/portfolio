@@ -25,10 +25,13 @@ export default {
         'cosmic': '#8b5cf6',
       },
       fontFamily: {
-        'inter': ['Inter', 'sans-serif'],
-        'departure-mono': ['Departure Mono', 'JetBrains Mono', 'monospace'],
+        'mono': ['Departure Mono', 'SF Mono', 'Monaco', 'Menlo', 'Ubuntu Mono', 'monospace'],
+        'departure-mono': ['Departure Mono', 'SF Mono', 'Monaco', 'Menlo', 'Ubuntu Mono', 'monospace'],
+        'primary': ['Departure Mono', 'SF Mono', 'Monaco', 'Menlo', 'Ubuntu Mono', 'monospace'],
+        'grotesk': ['Space Grotesk', 'Inter', 'Arial', 'sans-serif'],
+        'reading': ['Space Grotesk', 'Inter', 'Arial', 'sans-serif'],
+        'mori': ['PP Mori', 'Georgia', 'serif'],
         'jetbrains-mono': ['JetBrains Mono', 'monospace'],
-        'ppmori': ['Ppmori', 'Arial', 'sans-serif'],
         'space-mono': ['Space Mono', 'monospace'],
       },
       animation: {

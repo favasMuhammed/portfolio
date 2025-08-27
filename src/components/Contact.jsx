@@ -173,12 +173,12 @@ Sent from favastp.dev portfolio`
                       href={info.link} 
                       target={info.title === "LinkedIn" || info.title === "GitHub" || info.title === "WhatsApp" ? "_blank" : undefined}
                       rel={info.title === "LinkedIn" || info.title === "GitHub" || info.title === "WhatsApp" ? "noopener noreferrer" : undefined}
-                      className="text-text-secondary no-underline transition-all duration-300 hover:text-primary text-xs sm:text-sm break-all"
+                      className="text-text-secondary no-underline transition-all duration-300 hover:text-primary text-xs sm:text-sm break-all font-grotesk"
                     >
                       {info.value}
                     </a>
                   ) : (
-                    <span className="text-text-secondary text-xs sm:text-sm">{info.value}</span>
+                    <span className="text-text-secondary text-xs sm:text-sm font-grotesk">{info.value}</span>
                   )}
                 </div>
               </div>
@@ -194,7 +194,7 @@ Sent from favastp.dev portfolio`
                   name="name"
                   value={formData.name}
                   onChange={handleInputChange}
-                  className="form-input w-full p-3 sm:p-4 bg-gray-900/80 border border-gray-700/50 rounded-lg text-white placeholder-gray-400 focus:border-primary focus:outline-none transition-all duration-300 backdrop-blur-10 text-sm sm:text-base" 
+                  className="form-input w-full p-3 sm:p-4 bg-gray-900/80 border border-gray-700/50 rounded-lg text-white placeholder-gray-400 focus:border-primary focus:outline-none transition-all duration-300 backdrop-blur-10 text-sm sm:text-base font-grotesk" 
                   placeholder="Your Name" 
                   required 
                 />
@@ -205,7 +205,7 @@ Sent from favastp.dev portfolio`
                   name="email"
                   value={formData.email}
                   onChange={handleInputChange}
-                  className="form-input w-full p-3 sm:p-4 bg-gray-900/80 border border-gray-700/50 rounded-lg text-white placeholder-gray-400 focus:border-primary focus:outline-none transition-all duration-300 backdrop-blur-10 text-sm sm:text-base" 
+                  className="form-input w-full p-3 sm:p-4 bg-gray-900/80 border border-gray-700/50 rounded-lg text-white placeholder-gray-400 focus:border-primary focus:outline-none transition-all duration-300 backdrop-blur-10 text-sm sm:text-base font-grotesk" 
                   placeholder="Your Email" 
                   required 
                 />
@@ -216,7 +216,7 @@ Sent from favastp.dev portfolio`
                   name="subject"
                   value={formData.subject}
                   onChange={handleInputChange}
-                  className="form-input w-full p-3 sm:p-4 bg-gray-900/80 border border-gray-700/50 rounded-lg text-white placeholder-gray-400 focus:border-primary focus:outline-none transition-all duration-300 backdrop-blur-10 text-sm sm:text-base" 
+                  className="form-input w-full p-3 sm:p-4 bg-gray-900/80 border border-gray-700/50 rounded-lg text-white placeholder-gray-400 focus:border-primary focus:outline-none transition-all duration-300 backdrop-blur-10 text-sm sm:text-base font-grotesk" 
                   placeholder="Subject" 
                   required 
                 />

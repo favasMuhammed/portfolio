@@ -145,7 +145,11 @@ const Projects = () => {
   }
 
   return (
-    <section ref={projectsRef} className="projects-section py-32 bg-darker relative overflow-hidden">
+    <section 
+      id="projects"
+      ref={projectsRef} 
+      className="projects-section py-32 bg-darker relative overflow-hidden"
+    >
       {/* Background Elements */}
       <div className="absolute inset-0 overflow-hidden">
         <div className="absolute top-1/4 left-1/4 w-96 h-96 bg-primary/3 rounded-full blur-3xl animate-float-slow"></div>
@@ -179,7 +183,7 @@ const Projects = () => {
           </motion.h2>
           
           <motion.p 
-            className="section-description text-lg sm:text-xl text-text-secondary max-w-3xl mx-auto leading-relaxed px-4"
+            className="section-description text-lg sm:text-xl text-text-secondary max-w-3xl mx-auto leading-relaxed px-4 font-grotesk"
             initial={{ opacity: 0, y: 20 }}
             animate={isVisible ? { opacity: 1, y: 0 } : {}}
             transition={{ duration: 0.8, delay: 0.4 }}
@@ -274,7 +278,7 @@ const Projects = () => {
               {/* Project Content */}
               <div className="project-content p-3 sm:p-4 lg:p-6 flex-1 flex flex-col">
                 <h3 className="project-title text-primary mb-2 sm:mb-3 text-base sm:text-lg lg:text-xl font-semibold leading-tight font-departure-mono">{project.title}</h3>
-                <p className="project-description text-text-secondary mb-3 sm:mb-4 leading-relaxed text-xs sm:text-sm flex-1">
+                <p className="project-description text-text-secondary mb-3 sm:mb-4 leading-relaxed text-xs sm:text-sm flex-1 font-grotesk">
                   {project.description}
                 </p>
                 <div className="project-features flex gap-1.5 sm:gap-2 flex-wrap mt-auto">

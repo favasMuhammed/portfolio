@@ -169,7 +169,7 @@ const Experience = () => {
                 </div>
                 
                 {/* Job Description */}
-                <p className="job-description text-text-secondary mb-4 sm:mb-6 leading-relaxed text-sm sm:text-base">
+                <p className="job-description text-text-secondary mb-4 sm:mb-6 leading-relaxed text-sm sm:text-base font-grotesk">
                   {experience.description}
                 </p>
                 

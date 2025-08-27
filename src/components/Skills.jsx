@@ -94,7 +94,11 @@ const Skills = () => {
   }
 
   return (
-    <section ref={skillsRef} className="skills-section py-32 bg-dark relative overflow-hidden">
+    <section 
+      id="skills"
+      ref={skillsRef} 
+      className="skills-section py-32 bg-dark relative overflow-hidden"
+    >
       {/* Background Elements */}
       <div className="absolute inset-0 overflow-hidden">
         <div className="absolute top-1/4 left-1/4 w-96 h-96 bg-accent/3 rounded-full blur-3xl animate-float-slow"></div>
@@ -128,7 +132,7 @@ const Skills = () => {
           </motion.h2>
           
           <motion.p 
-            className="section-description text-lg sm:text-xl text-text-secondary max-w-3xl mx-auto leading-relaxed px-4"
+            className="section-description text-lg sm:text-xl text-text-secondary max-w-3xl mx-auto leading-relaxed px-4 font-grotesk"
             initial={{ opacity: 0, y: 20 }}
             animate={isVisible ? { opacity: 1, y: 0 } : {}}
             transition={{ duration: 0.8, delay: 0.4 }}
@@ -176,7 +180,7 @@ const Skills = () => {
                       <i className={skill.icon}></i>
                     </div>
                     <div className="skill-info flex-1 min-w-0">
-                      <span className="skill-name text-text font-medium text-xs sm:text-sm block truncate">{skill.name}</span>
+                      <span className="skill-name text-text font-medium text-xs sm:text-sm block truncate font-grotesk">{skill.name}</span>
                       <div className="skill-level relative h-1.5 sm:h-2 bg-white/10 rounded-full overflow-hidden mt-1.5 sm:mt-2">
                         <motion.div 
                           className="skill-bar h-full bg-gradient-to-r from-primary to-neon rounded-full transition-all duration-2000 ease-out relative"

@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>New Newsletter Subscription</title>
+</head>
+<body style="margin: 0; padding: 0; font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif; background-color: #f8fafc; line-height: 1.6;">
+    
+    <!-- Main Container -->
+    <div style="max-width: 600px; margin: 0 auto; background-color: #ffffff; box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);">
+        
+        <!-- Header -->
+        <div style="background: linear-gradient(135deg, #667eea 0%, #764ba2 100%); padding: 30px 40px; text-align: center;">
+            <h1 style="color: #ffffff; margin: 0; font-size: 28px; font-weight: 700; text-shadow: 0 2px 4px rgba(0,0,0,0.1);">
+                🎉 New Newsletter Subscriber!
+            </h1>
+            <p style="color: #e2e8f0; margin: 8px 0 0 0; font-size: 16px; opacity: 0.9;">
+                Someone wants to hear your thoughts
+            </p>
+        </div>
+        
+        <!-- Content -->
+        <div style="padding: 40px;">
+            
+            <!-- Greeting -->
+            <div style="margin-bottom: 30px;">
+                <h2 style="color: #2d3748; margin: 0 0 12px 0; font-size: 22px; font-weight: 600;">
+                    Hi {{to_name}},
+                </h2>
+                <p style="color: #4a5568; margin: 0; font-size: 16px;">
+                    Great news! You have a new newsletter subscription.
+                </p>
+            </div>
+            
+            <!-- Subscriber Info Card -->
+            <div style="background: linear-gradient(135deg, #f7fafc 0%, #edf2f7 100%); border: 1px solid #e2e8f0; border-radius: 12px; padding: 24px; margin-bottom: 30px;">
+                <div style="display: flex; align-items: center; margin-bottom: 16px;">
+                    <div style="background: linear-gradient(135deg, #667eea 0%, #764ba2 100%); width: 48px; height: 48px; border-radius: 50%; display: flex; align-items: center; justify-content: center; margin-right: 16px; box-shadow: 0 4px 8px rgba(102, 126, 234, 0.25);">
+                        <span style="color: #ffffff; font-size: 20px; font-weight: bold;">👤</span>
+                    </div>
+                    <div>
+                        <div style="color: #2d3748; font-size: 18px; font-weight: 600; margin-bottom: 4px;">
+                            New Subscriber
+                        </div>
+                        <div style="color: #718096; font-size: 14px;">
+                            {{current_date}}
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Email Display -->
+                <div style="background: #ffffff; border: 1px solid #e2e8f0; border-radius: 8px; padding: 16px;">
+                    <div style="color: #4a5568; font-size: 14px; margin-bottom: 4px; font-weight: 500;">
+                        📧 Email Address:
+                    </div>
+                    <div style="color: #2d3748; font-size: 16px; font-weight: 600; word-break: break-all;">
+                        {{user_email}}
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Message Section -->
+            <div style="background: #f0fff4; border: 1px solid #9ae6b4; border-radius: 8px; padding: 20px; margin-bottom: 30px;">
+                <div style="color: #22543d; font-size: 16px; line-height: 1.6;">
+                    {{message}}
+                </div>
+            </div>
+            
+            <!-- Action Buttons -->
+            <div style="text-align: center; margin-bottom: 30px;">
+                <table style="margin: 0 auto; border-spacing: 12px;">
+                    <tr>
+                        <td>
+                            <a href="mailto:{{user_email}}" style="display: inline-block; background: linear-gradient(135deg, #667eea 0%, #764ba2 100%); color: #ffffff; text-decoration: none; padding: 12px 24px; border-radius: 8px; font-weight: 600; font-size: 14px; box-shadow: 0 4px 8px rgba(102, 126, 234, 0.25); transition: all 0.2s;">
+                                📧 Reply to Subscriber
+                            </a>
+                        </td>
+                        <td>
+                            <a href="https://favastp.dev" style="display: inline-block; background: #ffffff; color: #667eea; text-decoration: none; padding: 12px 24px; border-radius: 8px; font-weight: 600; font-size: 14px; border: 2px solid #667eea; transition: all 0.2s;">
+                                🌐 View Portfolio
+                            </a>
+                        </td>
+                    </tr>
+                </table>
+            </div>
+            
+            <!-- Stats -->
+            <div style="background: #fffaf0; border: 1px solid #fed7aa; border-radius: 8px; padding: 20px; text-align: center;">
+                <div style="color: #9a3412; font-size: 14px; margin-bottom: 8px;">
+                    📊 Growing Your Audience
+                </div>
+                <div style="color: #7c2d12; font-size: 18px; font-weight: 600;">
+                    Keep creating amazing content! 🚀
+                </div>
+            </div>
+            
+        </div>
+        
+        <!-- Footer -->
+        <div style="background: #2d3748; padding: 24px 40px; text-align: center;">
+            <p style="color: #a0aec0; margin: 0 0 8px 0; font-size: 14px;">
+                This email was automatically generated from your portfolio website
+            </p>
+            <p style="color: #718096; margin: 0; font-size: 12px;">
+                favastp.dev • Building amazing digital experiences
+            </p>
+        </div>
+        
+    </div>
+    
+    <!-- Spacer -->
+    <div style="height: 40px;"></div>
+    
+</body>
+</html>

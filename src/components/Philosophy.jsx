@@ -46,11 +46,11 @@ const Philosophy = () => {
         transition={{ delay: 0.3, duration: 1 }}
         className="text-[#7e8087] text-lg md:text-xl mb-6 text-center"
         style={{
-          fontFamily: "var(--font-ppmor)",
+          fontFamily: "var(--font-grotesk)",
           fontWeight: 400,
         }}
       >
-        Ultimately, it's not about magic.
+        Ultimately, it's not about
       </motion.p>
 
       {/* Main word */}
@@ -59,9 +59,9 @@ const Philosophy = () => {
         initial="hidden"
         animate="visible"
         whileHover="hover"
-        className="text-[80px] sm:text-[120px] md:text-[160px] lg:text-[200px] leading-[80px] sm:leading-[120px] md:leading-[160px] lg:leading-[200px] font-semibold text-center px-4"
+        className="text-[80px] sm:text-[130px] md:text-[180px] lg:text-[220px] leading-[80px] sm:leading-[120px] md:leading-[160px] lg:leading-[200px] font-semibold text-center px-4 font-mori"
         style={{
-          fontFamily: "var(--font-ppmor)",
+          fontFamily: "var(--font-mori)",
           fontWeight: 600,
         }}
       >
@@ -75,7 +75,7 @@ const Philosophy = () => {
         transition={{ delay: 0.6, duration: 1 }}
         className="text-[#7e8087] text-lg md:text-xl mt-6 text-center"
         style={{
-          fontFamily: "var(--font-ppmor)",
+          fontFamily: "var(--font-grotesk)",
           fontWeight: 400,
         }}
       >
