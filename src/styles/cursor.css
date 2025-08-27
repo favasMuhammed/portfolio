@@ -1,0 +1,394 @@
+/* Modern Custom Cursor System - Developer Theme */
+
+/* Hide default cursor */
+* {
+  cursor: none !important;
+}
+
+/* Main cursor dot - Modern pill shape */
+.cursor-dot {
+  width: 6px;
+  height: 6px;
+  background: linear-gradient(135deg, #00ff88, #00d4aa);
+  border-radius: 50%;
+  position: fixed;
+  pointer-events: none;
+  z-index: 9999;
+  transition: all 0.2s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+  box-shadow: 
+    0 0 20px rgba(0, 255, 136, 0.6),
+    0 0 40px rgba(0, 255, 136, 0.3),
+    inset 0 0 8px rgba(255, 255, 255, 0.2);
+  backdrop-filter: blur(2px);
+}
+
+/* Cursor ring - Modern geometric shape */
+.cursor-ring {
+  width: 32px;
+  height: 32px;
+  border: 1.5px solid rgba(0, 255, 136, 0.4);
+  border-radius: 50%;
+  position: fixed;
+  pointer-events: none;
+  z-index: 9998;
+  transition: all 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+  opacity: 0.6;
+  backdrop-filter: blur(1px);
+}
+
+/* Cursor text label - Modern tooltip */
+.cursor-text {
+  position: fixed;
+  pointer-events: none;
+  z-index: 9997;
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 11px;
+  font-weight: 500;
+  color: #00ff88;
+  background: rgba(0, 0, 0, 0.9);
+  padding: 6px 10px;
+  border-radius: 6px;
+  white-space: nowrap;
+  opacity: 0;
+  transition: all 0.3s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+  border: 1px solid rgba(0, 255, 136, 0.3);
+  backdrop-filter: blur(10px);
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.5);
+  transform: translateY(8px);
+}
+
+/* Hover effects - Enhanced interactions */
+.cursor-dot.hover {
+  transform: scale(1.8);
+  background: linear-gradient(135deg, #ff3cac, #784ba0);
+  box-shadow: 
+    0 0 30px rgba(255, 60, 172, 0.8),
+    0 0 60px rgba(255, 60, 172, 0.4),
+    inset 0 0 12px rgba(255, 255, 255, 0.3);
+}
+
+.cursor-ring.hover {
+  width: 48px;
+  height: 48px;
+  border-color: rgba(255, 60, 172, 0.6);
+  opacity: 1;
+  transform: rotate(45deg);
+}
+
+.cursor-text.hover {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+/* Click effects - Modern feedback */
+.cursor-dot.click {
+  transform: scale(0.6);
+  background: linear-gradient(135deg, #ff6b35, #f7931e);
+  box-shadow: 
+    0 0 25px rgba(255, 107, 53, 0.8),
+    0 0 50px rgba(255, 107, 53, 0.4),
+    inset 0 0 10px rgba(255, 255, 255, 0.2);
+}
+
+.cursor-ring.click {
+  transform: scale(0.7) rotate(90deg);
+  border-color: rgba(255, 107, 53, 0.6);
+}
+
+/* Text selection cursor - Modern I-beam */
+.cursor-dot.text {
+  background: linear-gradient(135deg, #43cea2, #185a9d);
+  box-shadow: 
+    0 0 20px rgba(67, 206, 162, 0.6),
+    0 0 40px rgba(67, 206, 162, 0.3),
+    inset 0 0 8px rgba(255, 255, 255, 0.2);
+  border-radius: 1px;
+  width: 2px;
+  height: 18px;
+}
+
+.cursor-ring.text {
+  border-color: rgba(67, 206, 162, 0.6);
+  border-radius: 2px;
+  width: 16px;
+  height: 22px;
+}
+
+/* Link hover cursor - Modern arrow */
+.cursor-dot.link {
+  background: linear-gradient(135deg, #784ba0, #2b86c5);
+  box-shadow: 
+    0 0 20px rgba(120, 75, 160, 0.6),
+    0 0 40px rgba(120, 75, 160, 0.3),
+    inset 0 0 8px rgba(255, 255, 255, 0.2);
+  transform: rotate(45deg);
+  border-radius: 2px;
+  width: 8px;
+  height: 8px;
+}
+
+.cursor-ring.link {
+  border-color: rgba(120, 75, 160, 0.6);
+  transform: rotate(45deg) scale(1.2);
+  border-radius: 4px;
+  width: 24px;
+  height: 24px;
+}
+
+/* Button hover cursor - Modern square */
+.cursor-dot.button {
+  background: linear-gradient(135deg, #2b86c5, #43cea2);
+  box-shadow: 
+    0 0 20px rgba(43, 134, 197, 0.6),
+    0 0 40px rgba(43, 134, 197, 0.3),
+    inset 0 0 8px rgba(255, 255, 255, 0.2);
+  border-radius: 4px;
+  width: 10px;
+  height: 10px;
+}
+
+.cursor-ring.button {
+  border-color: rgba(43, 134, 197, 0.6);
+  border-radius: 6px;
+  width: 40px;
+  height: 24px;
+}
+
+/* Code/terminal cursor - Modern block */
+.cursor-dot.code {
+  background: linear-gradient(135deg, #185a9d, #2b86c5);
+  box-shadow: 
+    0 0 20px rgba(24, 90, 157, 0.6),
+    0 0 40px rgba(24, 90, 157, 0.3),
+    inset 0 0 8px rgba(255, 255, 255, 0.2);
+  border-radius: 0;
+  width: 8px;
+  height: 16px;
+}
+
+.cursor-ring.code {
+  border-color: rgba(24, 90, 157, 0.6);
+  border-radius: 0;
+  width: 12px;
+  height: 20px;
+}
+
+/* Terminal cursor - Modern green block */
+.cursor-dot.terminal {
+  background: linear-gradient(135deg, #00ff00, #00cc00);
+  box-shadow: 
+    0 0 20px rgba(0, 255, 0, 0.6),
+    0 0 40px rgba(0, 255, 0, 0.3),
+    inset 0 0 8px rgba(255, 255, 255, 0.2);
+  border-radius: 0;
+  width: 8px;
+  height: 16px;
+}
+
+.cursor-ring.terminal {
+  border-color: rgba(0, 255, 0, 0.6);
+  border-radius: 0;
+  width: 12px;
+  height: 20px;
+}
+
+/* Git cursor - Modern orange diamond */
+.cursor-dot.git {
+  background: linear-gradient(135deg, #f05032, #e74c3c);
+  box-shadow: 
+    0 0 20px rgba(240, 80, 50, 0.6),
+    0 0 40px rgba(240, 80, 50, 0.3),
+    inset 0 0 8px rgba(255, 255, 255, 0.2);
+  transform: rotate(45deg);
+  border-radius: 2px;
+  width: 8px;
+  height: 8px;
+}
+
+.cursor-ring.git {
+  border-color: rgba(240, 80, 50, 0.6);
+  transform: rotate(45deg) scale(1.1);
+  border-radius: 4px;
+  width: 20px;
+  height: 20px;
+}
+
+/* Database cursor - Modern blue circle */
+.cursor-dot.database {
+  background: linear-gradient(135deg, #336791, #2b86c5);
+  box-shadow: 
+    0 0 20px rgba(51, 103, 145, 0.6),
+    0 0 40px rgba(51, 103, 145, 0.3),
+    inset 0 0 8px rgba(255, 255, 255, 0.2);
+  border-radius: 50%;
+  width: 8px;
+  height: 8px;
+}
+
+.cursor-ring.database {
+  border-color: rgba(51, 103, 145, 0.6);
+  border-radius: 50%;
+  width: 24px;
+  height: 24px;
+}
+
+/* API cursor - Modern red rectangle */
+.cursor-dot.api {
+  background: linear-gradient(135deg, #ff6b6b, #ee5a52);
+  box-shadow: 
+    0 0 20px rgba(255, 107, 107, 0.6),
+    0 0 40px rgba(255, 107, 107, 0.3),
+    inset 0 0 8px rgba(255, 255, 255, 0.2);
+  border-radius: 4px;
+  width: 10px;
+  height: 8px;
+}
+
+.cursor-ring.api {
+  border-color: rgba(255, 107, 107, 0.6);
+  border-radius: 6px;
+  width: 32px;
+  height: 16px;
+}
+
+/* Loading cursor - Animated pulse */
+.cursor-dot.loading {
+  background: linear-gradient(135deg, #ffd700, #ffed4e);
+  box-shadow: 
+    0 0 20px rgba(255, 215, 0, 0.6),
+    0 0 40px rgba(255, 215, 0, 0.3),
+    inset 0 0 8px rgba(255, 255, 255, 0.2);
+  animation: cursorPulse 1.5s infinite;
+}
+
+.cursor-ring.loading {
+  border-color: rgba(255, 215, 0, 0.6);
+  animation: cursorRotate 2s linear infinite;
+}
+
+/* Enhanced cursor animations */
+@keyframes cursorPulse {
+  0%, 100% { 
+    transform: scale(1);
+    opacity: 1;
+  }
+  50% { 
+    transform: scale(1.3);
+    opacity: 0.8;
+  }
+}
+
+@keyframes cursorRotate {
+  0% { transform: rotate(0deg); }
+  100% { transform: rotate(360deg); }
+}
+
+@keyframes cursorGlitch {
+  0%, 100% { 
+    transform: translate(0, 0) scale(1);
+    filter: hue-rotate(0deg);
+  }
+  25% { 
+    transform: translate(1px, -1px) scale(1.05);
+    filter: hue-rotate(90deg);
+  }
+  50% { 
+    transform: translate(-1px, 1px) scale(0.95);
+    filter: hue-rotate(180deg);
+  }
+  75% { 
+    transform: translate(0.5px, -0.5px) scale(1.02);
+    filter: hue-rotate(270deg);
+  }
+}
+
+/* Glitch effect for special interactions */
+.cursor-dot.glitch {
+  animation: cursorGlitch 0.3s ease-in-out;
+}
+
+/* Modern cursor trail effect */
+.cursor-trail {
+  width: 3px;
+  height: 3px;
+  background: linear-gradient(135deg, #00ff88, #00d4aa);
+  border-radius: 50%;
+  position: fixed;
+  pointer-events: none;
+  z-index: 9996;
+  opacity: 0.7;
+  animation: cursorTrail 0.6s ease-out forwards;
+  backdrop-filter: blur(1px);
+}
+
+@keyframes cursorTrail {
+  0% {
+    opacity: 0.7;
+    transform: scale(1);
+  }
+  100% {
+    opacity: 0;
+    transform: scale(0.1);
+  }
+}
+
+/* Enhanced trail effects for different cursor types */
+.cursor-trail.text {
+  background: linear-gradient(135deg, #43cea2, #185a9d);
+  width: 1px;
+  height: 14px;
+  border-radius: 0;
+}
+
+.cursor-trail.code {
+  background: linear-gradient(135deg, #185a9d, #2b86c5);
+  width: 6px;
+  height: 6px;
+  border-radius: 0;
+}
+
+.cursor-trail.link {
+  background: linear-gradient(135deg, #784ba0, #2b86c5);
+  width: 4px;
+  height: 4px;
+  border-radius: 50%;
+}
+
+.cursor-trail.button {
+  background: linear-gradient(135deg, #2b86c5, #43cea2);
+  width: 6px;
+  height: 6px;
+  border-radius: 4px;
+}
+
+/* Responsive cursor - Hide on mobile */
+@media (max-width: 768px) {
+  .cursor-dot,
+  .cursor-ring,
+  .cursor-text {
+    display: none;
+  }
+  
+  * {
+    cursor: auto !important;
+  }
+}
+
+/* High DPI displays - Optimized for retina */
+@media (-webkit-min-device-pixel-ratio: 2), (min-resolution: 192dpi) {
+  .cursor-dot {
+    width: 4px;
+    height: 4px;
+  }
+  
+  .cursor-ring {
+    width: 24px;
+    height: 24px;
+    border-width: 1px;
+  }
+  
+  .cursor-text {
+    font-size: 10px;
+    padding: 5px 8px;
+  }
+}

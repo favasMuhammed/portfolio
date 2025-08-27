@@ -1,0 +1,41 @@
+/* Custom Font Declarations */
+
+/* Departure Mono - Primary font */
+@font-face {
+  font-family: 'Departure Mono';
+  src: url('/fonts/DepartureMono-Regular.woff2') format('woff2'),
+       url('/fonts/DepartureMono-Regular.woff') format('woff');
+  font-weight: 400;
+  font-style: normal;
+  font-display: swap;
+}
+
+/* Departure Mono for different weights */
+@font-face {
+  font-family: 'Departure Mono';
+  src: url('/fonts/DepartureMono-Regular.woff2') format('woff2'),
+       url('/fonts/DepartureMono-Regular.woff') format('woff');
+  font-weight: 600;
+  font-style: normal;
+  font-display: swap;
+}
+
+/* PP Mori SemiBold - For special display text */
+@font-face {
+  font-family: 'PP Mori';
+  src: url('/fonts/PPMori-SemiBold.woff2') format('woff2'),
+       url('/fonts/PPMori-SemiBold.woff') format('woff');
+  font-weight: 600;
+  font-style: normal;
+  font-display: swap;
+}
+
+/* Font variables for consistent usage */
+:root {
+  --font-departure: 'Departure Mono', 'SF Mono', 'Monaco', 'Menlo', 'Ubuntu Mono', monospace;
+  --font-primary: 'Departure Mono', 'SF Mono', 'Monaco', 'Menlo', 'Ubuntu Mono', monospace;
+  --font-mono: 'Departure Mono', 'SF Mono', 'Monaco', 'Menlo', 'Ubuntu Mono', monospace;
+  --font-grotesk: 'Space Grotesk', 'Inter', 'Arial', sans-serif;
+  --font-reading: 'Space Grotesk', 'Inter', 'Arial', sans-serif;
+  --font-mori: 'PP Mori', Georgia, serif;
+}
