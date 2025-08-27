@@ -14,7 +14,14 @@
 @tailwind components;
 @tailwind utilities;
 
-/* DEPARTURE MONO FONT - Local font files take precedence over Google Fonts fallback */
+/* DEPARTURE MONO FONT - Using JetBrains Mono as alternative */
+@font-face {
+    font-family: 'Departure Mono';
+    src: url('https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400&display=swap');
+    font-weight: 400;
+    font-style: normal;
+    font-display: swap;
+}
 
 /* PPMORI FONT - Imported from Google Fonts */
 

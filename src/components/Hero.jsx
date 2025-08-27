@@ -118,7 +118,7 @@ const Hero = () => {
         <div 
           className="absolute inset-0 bg-cover bg-no-repeat creative-bg"
           style={{
-            backgroundImage: 'url(./image.webp)',
+            backgroundImage: 'url(/image.webp)',
             backgroundPosition: isMobile ? 'center top' : 'center center',
             backgroundAttachment: 'scroll', // Always scroll for the reveal effect
             backgroundSize: 'cover',
