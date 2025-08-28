@@ -1,3 +1,5 @@
+import { Link } from 'react-router-dom'
+
 const RightColumn = () => {
   return (
     <>
@@ -27,7 +29,7 @@ const RightColumn = () => {
            </div>
         </div>
         <div className="thoughts-more mt-4 sm:mt-6 text-center">
-          <a href="/thoughts" className="more-link text-primary no-underline font-medium transition-all duration-300 hover:text-primary-dark hover:translate-x-1 text-sm sm:text-base font-grotesk">More thoughts →</a>
+          <Link to="/thoughts" className="more-link text-primary no-underline font-medium transition-all duration-300 hover:text-primary-dark hover:translate-x-1 text-sm sm:text-base font-grotesk">More thoughts →</Link>
         </div>
       </div>
       
