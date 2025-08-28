@@ -17,7 +17,7 @@ function App() {
   return (
     <div className={`min-h-screen bg-dark text-text font-mono cursor-none ${isLoaded ? 'loaded' : ''}`}>
       <CustomCursor />
-      <Router>
+      <Router basename="/portfolio">
         <Routes>
           <Route path="/" element={
             <>

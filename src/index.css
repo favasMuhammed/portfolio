@@ -2,6 +2,7 @@
 @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap');
 @import url('https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500;600&display=swap');
 @import url('https://fonts.googleapis.com/css2?family=Space+Mono:wght@400;700&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600;700&display=swap');
 
 /* Import Custom Fonts */
 @import url('./styles/fonts.css');
@@ -15,13 +16,7 @@
 @tailwind utilities;
 
 /* DEPARTURE MONO FONT - Using JetBrains Mono as alternative */
-@font-face {
-    font-family: 'Departure Mono';
-    src: url('https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400&display=swap');
-    font-weight: 400;
-    font-style: normal;
-    font-display: swap;
-}
+/* Note: Custom Departure Mono font is now defined in fonts.css */
 
 /* PPMORI FONT - Imported from Google Fonts */
 
@@ -606,10 +601,7 @@ body, html {
     }
     
     /* Mobile typography adjustments */
-    .hero-title h1 {
-        font-size: clamp(2.5rem, 8vw, 4rem) !important;
-    }
-    
+  
     .hero-title p {
         font-size: clamp(1.1rem, 4vw, 1.5rem) !important;
     }

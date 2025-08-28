@@ -118,7 +118,7 @@ const Hero = () => {
         <div 
           className="absolute inset-0 bg-cover bg-no-repeat creative-bg"
           style={{
-            backgroundImage: 'url(/image.webp)',
+            backgroundImage: 'url(./image.webp)',
             backgroundPosition: isMobile ? 'center top' : 'center center',
             backgroundAttachment: 'scroll', // Always scroll for the reveal effect
             backgroundSize: 'cover',
@@ -223,12 +223,12 @@ const Hero = () => {
           <div className="max-w-4xl mx-auto">
             {/* Name & Title */}
             <motion.h1 
-              className="text-2xl sm:text-2xl md:text-3xl lg:text-4xl font-bold text-white mb-4 sm:mb-6 font-mono"
+              className="text-2xl sm:text-3xl md:text-3xl lg:text-4xl font-bold text-white mb-4 sm:mb-6 font-mono"
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ delay: 0.3, duration: 0.8 }}
             >
-              <span className="text-gray-400 text-2xl sm:text-2xl md:text-3xl lg:text-4xl font-light block mb-2 font-mono">Hello, I'm</span>
+              <span className="text-gray-400 text-2xl sm:text-3xl md:text-3xl lg:text-4xl font-light block mb-2 font-mono">Hello, I'm</span>
               <span className="bg-gradient-to-r from-primary via-primary to-emerald-400 bg-clip-text text-transparent font-mono">
                 Muhammed Favas T P
           </span>
