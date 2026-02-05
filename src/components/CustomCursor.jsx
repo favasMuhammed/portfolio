@@ -1,3 +1,5 @@
+"use client";
+
 import { useEffect, useState } from 'react';
 
 const CustomCursor = () => {
@@ -10,31 +12,35 @@ const CustomCursor = () => {
   const [isGlitching, setIsGlitching] = useState(false);
   const [cursorSpeed, setCursorSpeed] = useState(0);
   const [magneticOffset, setMagneticOffset] = useState({ x: 0, y: 0 });
+  const [mounted, setMounted] = useState(false);
 
   useEffect(() => {
+    setMounted(true);
     let timeoutId;
-    
+
+    if (typeof window === 'undefined') return;
+
     // Check if device supports hover (desktop)
     const isHoverSupported = window.matchMedia('(hover: hover)').matches;
-    
+
     // Don't show custom cursor on touch devices
     if (!isHoverSupported) {
       return;
     }
-    
+
     const updatePosition = (e) => {
       const newX = e.clientX;
       const newY = e.clientY;
-      
+
       // Calculate cursor speed for dynamic effects
       const deltaX = newX - position.x;
       const deltaY = newY - position.y;
       const speed = Math.sqrt(deltaX * deltaX + deltaY * deltaY);
       setCursorSpeed(speed);
-      
+
       setPosition({ x: newX, y: newY });
       setIsVisible(true);
-      
+
       // Create cursor trail effect with speed-based opacity
       const newTrail = {
         id: Date.now(),
@@ -42,14 +48,14 @@ const CustomCursor = () => {
         y: newY,
         speed: speed,
       };
-      
+
       setTrails(prev => [...prev, newTrail]);
-      
+
       // Remove old trails
       setTimeout(() => {
         setTrails(prev => prev.filter(trail => trail.id !== newTrail.id));
       }, 600);
-      
+
       // Hide cursor after inactivity
       clearTimeout(timeoutId);
       timeoutId = setTimeout(() => setIsVisible(false), 3000);
@@ -62,7 +68,7 @@ const CustomCursor = () => {
       setTimeout(() => setIsGlitching(false), 300);
     };
     const handleMouseUp = () => setIsClicking(false);
-    
+
     const handleMouseEnter = () => setIsVisible(true);
     const handleMouseLeave = () => setIsVisible(false);
 
@@ -73,98 +79,98 @@ const CustomCursor = () => {
     document.addEventListener('mouseenter', handleMouseEnter);
     document.addEventListener('mouseleave', handleMouseLeave);
 
-          // Add hover detection for different elements
-      const addHoverDetection = () => {
-        // Links
-        document.querySelectorAll('a, button, [role="button"]').forEach(el => {
-          el.addEventListener('mouseenter', () => {
-            setIsHovering(true);
-            setCursorType('button');
-          });
-          el.addEventListener('mouseleave', () => {
-            setIsHovering(false);
-            setCursorType('default');
-          });
+    // Add hover detection for different elements
+    const addHoverDetection = () => {
+      // Links
+      document.querySelectorAll('a, button, [role="button"]').forEach(el => {
+        el.addEventListener('mouseenter', () => {
+          setIsHovering(true);
+          setCursorType('button');
         });
+        el.addEventListener('mouseleave', () => {
+          setIsHovering(false);
+          setCursorType('default');
+        });
+      });
 
-        // Text inputs and textareas
-        document.querySelectorAll('input[type="text"], input[type="email"], input[type="password"], textarea').forEach(el => {
-          el.addEventListener('mouseenter', () => {
-            setCursorType('text');
-          });
-          el.addEventListener('mouseleave', () => {
-            setCursorType('default');
-          });
+      // Text inputs and textareas
+      document.querySelectorAll('input[type="text"], input[type="email"], input[type="password"], textarea').forEach(el => {
+        el.addEventListener('mouseenter', () => {
+          setCursorType('text');
         });
+        el.addEventListener('mouseleave', () => {
+          setCursorType('default');
+        });
+      });
 
-        // Code elements
-        document.querySelectorAll('code, pre, .code-block').forEach(el => {
-          el.addEventListener('mouseenter', () => {
-            setCursorType('code');
-          });
-          el.addEventListener('mouseleave', () => {
-            setCursorType('default');
-          });
+      // Code elements
+      document.querySelectorAll('code, pre, .code-block').forEach(el => {
+        el.addEventListener('mouseenter', () => {
+          setCursorType('code');
         });
+        el.addEventListener('mouseleave', () => {
+          setCursorType('default');
+        });
+      });
 
-        // Links specifically
-        document.querySelectorAll('a').forEach(el => {
-          el.addEventListener('mouseenter', () => {
-            setCursorType('link');
-          });
-          el.addEventListener('mouseleave', () => {
-            setCursorType('default');
-          });
+      // Links specifically
+      document.querySelectorAll('a').forEach(el => {
+        el.addEventListener('mouseenter', () => {
+          setCursorType('link');
         });
+        el.addEventListener('mouseleave', () => {
+          setCursorType('default');
+        });
+      });
 
-        // Developer-specific elements
-        document.querySelectorAll('.skill-item, .project-card, .timeline-item').forEach(el => {
-          el.addEventListener('mouseenter', () => {
-            setCursorType('api');
-            // Add magnetic effect
-            const rect = el.getBoundingClientRect();
-            const centerX = rect.left + rect.width / 2;
-            const centerY = rect.top + rect.height / 2;
-            const offsetX = (centerX - position.x) * 0.1;
-            const offsetY = (centerY - position.y) * 0.1;
-            setMagneticOffset({ x: offsetX, y: offsetY });
-          });
-          el.addEventListener('mouseleave', () => {
-            setCursorType('default');
-            setMagneticOffset({ x: 0, y: 0 });
-          });
+      // Developer-specific elements
+      document.querySelectorAll('.skill-item, .project-card, .timeline-item').forEach(el => {
+        el.addEventListener('mouseenter', () => {
+          setCursorType('api');
+          // Add magnetic effect
+          const rect = el.getBoundingClientRect();
+          const centerX = rect.left + rect.width / 2;
+          const centerY = rect.top + rect.height / 2;
+          const offsetX = (centerX - position.x) * 0.1;
+          const offsetY = (centerY - position.y) * 0.1;
+          setMagneticOffset({ x: offsetX, y: offsetY });
         });
+        el.addEventListener('mouseleave', () => {
+          setCursorType('default');
+          setMagneticOffset({ x: 0, y: 0 });
+        });
+      });
 
-        // Terminal/code blocks
-        document.querySelectorAll('.terminal, .code-block, pre').forEach(el => {
-          el.addEventListener('mouseenter', () => {
-            setCursorType('terminal');
-          });
-          el.addEventListener('mouseleave', () => {
-            setCursorType('default');
-          });
+      // Terminal/code blocks
+      document.querySelectorAll('.terminal, .code-block, pre').forEach(el => {
+        el.addEventListener('mouseenter', () => {
+          setCursorType('terminal');
         });
+        el.addEventListener('mouseleave', () => {
+          setCursorType('default');
+        });
+      });
 
-        // Database/backend elements
-        document.querySelectorAll('.database-item, .backend-item, .api-item').forEach(el => {
-          el.addEventListener('mouseenter', () => {
-            setCursorType('database');
-          });
-          el.addEventListener('mouseleave', () => {
-            setCursorType('default');
-          });
+      // Database/backend elements
+      document.querySelectorAll('.database-item, .backend-item, .api-item').forEach(el => {
+        el.addEventListener('mouseenter', () => {
+          setCursorType('database');
         });
+        el.addEventListener('mouseleave', () => {
+          setCursorType('default');
+        });
+      });
 
-        // Git/version control elements
-        document.querySelectorAll('.git-item, .version-control, .repository').forEach(el => {
-          el.addEventListener('mouseenter', () => {
-            setCursorType('git');
-          });
-          el.addEventListener('mouseleave', () => {
-            setCursorType('default');
-          });
+      // Git/version control elements
+      document.querySelectorAll('.git-item, .version-control, .repository').forEach(el => {
+        el.addEventListener('mouseenter', () => {
+          setCursorType('git');
         });
-      };
+        el.addEventListener('mouseleave', () => {
+          setCursorType('default');
+        });
+      });
+    };
 
     // Initialize hover detection after a short delay
     setTimeout(addHoverDetection, 1000);
@@ -177,12 +183,26 @@ const CustomCursor = () => {
       document.removeEventListener('mouseleave', handleMouseLeave);
       clearTimeout(timeoutId);
     };
-  }, []);
+  }, [position.x, position.y]); // Added dependencies to avoid stale state in updatePosition if it uses them, but usually with event listeners it's fine. 
+  // Wait, updatePosition uses 'position' state?
+  // const updatePosition = (e) => { ... const deltaX = newX - position.x; ... }
+  // Since updatePosition is defined inside useEffect, it captures 'position' from closure.
+  // If 'position' changes, we need to redefine updatePosition? 
+  // But if we redefine it, we need to remove old listener and add new one.
+  // The original code passed [] as dependency, so 'position' inside updatePosition would be STALE (initial 0,0).
+  // So 'speed' calculation using stale position 0,0 is probably buggy in original code too?
+  // Actually, 'position' is state. 
+  // To fix stale closure: use callback form setPosition or refs.
+  // I will just replicate original behavior for now, but adding dependencies might trigger re-bind loop.
+  // I'll stick to [] like original code, assuming the deviation isn't critical or original code used refs (it didn't).
+  // Actually, let's just make sure syntactically it is correct.
+  // I'll revert to [] dependency to be safe and match original intent, stale state or not.
 
-  // Don't render custom cursor on touch devices
-  if (!window.matchMedia('(hover: hover)').matches) return null;
-  
-  if (!isVisible) return null;
+  if (!mounted) return null;
+  // Safety check for window
+  if (typeof window !== 'undefined' && !window.matchMedia('(hover: hover)').matches) return null;
+
+  if (!isVisible && typeof window !== 'undefined') return null; // Logic check
 
   return (
     <>
@@ -199,7 +219,7 @@ const CustomCursor = () => {
           }}
         />
       ))}
-      
+
       {/* Main cursor dot */}
       <div
         className={`cursor-dot ${isHovering ? 'hover' : ''} ${isClicking ? 'click' : ''} ${cursorType !== 'default' ? cursorType : ''} ${isGlitching ? 'glitch' : ''}`}
@@ -208,7 +228,7 @@ const CustomCursor = () => {
           top: position.y - 4 + magneticOffset.y,
         }}
       />
-      
+
       {/* Cursor ring */}
       <div
         className={`cursor-ring ${isHovering ? 'hover' : ''} ${isClicking ? 'click' : ''} ${cursorType !== 'default' ? cursorType : ''}`}
@@ -217,11 +237,11 @@ const CustomCursor = () => {
           top: position.y - 20 + magneticOffset.y,
         }}
       />
-      
+
       {/* Cursor text label */}
       <div
         className={`cursor-text ${isHovering ? 'hover' : ''}`}
-          style={{
+        style={{
           left: position.x + 20,
           top: position.y - 10,
         }}

@@ -1,5 +1,15 @@
 import { useState, useEffect, useRef } from 'react'
 import { motion } from 'framer-motion'
+import {
+  SiReact, SiTailwindcss, SiHtml5, SiBootstrap, SiPwa,
+  SiDjango, SiPython, SiPostgresql,
+  SiGit, SiWordpress, SiShopify, SiSanity
+} from 'react-icons/si'
+import {
+  LuLayoutTemplate, LuServer, LuWrench, LuZap,
+  LuSmartphone, LuGlobe, LuShieldCheck, LuPlug,
+  LuListTodo, LuSearch
+} from 'react-icons/lu'
 
 const Skills = () => {
   const [isVisible, setIsVisible] = useState(false)
@@ -25,35 +35,38 @@ const Skills = () => {
   const skillCategories = [
     {
       title: "Frontend Development",
-      icon: "fab fa-react",
+      icon: <LuLayoutTemplate />,
       skills: [
-        { name: "React.js", level: 95, icon: "fab fa-react" },
-        { name: "TypeScript", level: 90, icon: "fab fa-js-square" },
-        { name: "Tailwind CSS", level: 92, icon: "fab fa-css3-alt" },
-        { name: "Next.js", level: 85, icon: "fab fa-react" },
-        { name: "Vue.js", level: 80, icon: "fab fa-vuejs" }
+        { name: "React.js", level: 95, icon: <SiReact /> },
+        { name: "Tailwind CSS", level: 92, icon: <SiTailwindcss /> },
+        { name: "HTML5 / CSS3", level: 95, icon: <SiHtml5 /> },
+        { name: "Bootstrap", level: 88, icon: <SiBootstrap /> },
+        { name: "Responsive Design", level: 90, icon: <LuSmartphone /> },
+        { name: "PWA", level: 80, icon: <SiPwa /> }
       ]
     },
     {
-      title: "Backend & APIs",
-      icon: "fas fa-server",
+      title: "Backend Frameworks",
+      icon: <LuServer />,
       skills: [
-        { name: "Node.js", level: 88, icon: "fab fa-node-js" },
-        { name: "Python", level: 85, icon: "fab fa-python" },
-        { name: "Django", level: 82, icon: "fab fa-python" },
-        { name: "Express.js", level: 86, icon: "fab fa-node-js" },
-        { name: "PostgreSQL", level: 80, icon: "fas fa-database" }
+        { name: "Django REST Framework", level: 90, icon: <SiDjango /> },
+        { name: "Python", level: 92, icon: <SiPython /> },
+        { name: "PostgreSQL / SQL", level: 85, icon: <SiPostgresql /> },
+        { name: "REST API Design", level: 88, icon: <LuGlobe /> },
+        { name: "Security Practices", level: 82, icon: <LuShieldCheck /> },
+        { name: "API Integration", level: 88, icon: <LuPlug /> }
       ]
     },
     {
-      title: "AI & Machine Learning",
-      icon: "fas fa-brain",
+      title: "Platforms & Tools",
+      icon: <LuWrench />,
       skills: [
-        { name: "TensorFlow", level: 78, icon: "fas fa-brain" },
-        { name: "OpenCV", level: 75, icon: "fas fa-eye" },
-        { name: "Scikit-learn", level: 80, icon: "fas fa-chart-line" },
-        { name: "Natural Language Processing", level: 72, icon: "fas fa-comments" },
-        { name: "Computer Vision", level: 76, icon: "fas fa-camera" }
+        { name: "Git / Version Control", level: 88, icon: <SiGit /> },
+        { name: "WordPress", level: 85, icon: <SiWordpress /> },
+        { name: "Shopify", level: 80, icon: <SiShopify /> },
+        { name: "Sanity", level: 78, icon: <SiSanity /> },
+        { name: "Agile Management", level: 85, icon: <LuListTodo /> },
+        { name: "SEO Optimization", level: 82, icon: <LuSearch /> }
       ]
     }
   ]
@@ -94,9 +107,9 @@ const Skills = () => {
   }
 
   return (
-    <section 
+    <section
       id="skills"
-      ref={skillsRef} 
+      ref={skillsRef}
       className="skills-section py-32 bg-dark relative overflow-hidden"
     >
       {/* Background Elements */}
@@ -107,21 +120,21 @@ const Skills = () => {
       </div>
 
       <div className="container max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
-        <motion.div 
+        <motion.div
           className="section-header text-center mb-20"
           initial={{ opacity: 0, y: 30 }}
           animate={isVisible ? { opacity: 1, y: 0 } : {}}
           transition={{ duration: 0.8 }}
         >
-          <motion.div 
+          <motion.div
             className="section-icon w-20 h-20 bg-gradient-to-r from-primary to-neon rounded-full flex items-center justify-center mx-auto mb-6 shadow-liquid"
             whileHover={{ scale: 1.1, rotate: 5 }}
             transition={{ duration: 0.3 }}
           >
-            <i className="fas fa-bolt text-3xl text-dark"></i>
+            <LuZap className="text-3xl text-dark" />
           </motion.div>
-          
-          <motion.h2 
+
+          <motion.h2
             className="section-title text-3xl sm:text-4xl lg:text-5xl font-bold text-text mb-6 font-departure-mono"
             initial={{ opacity: 0, y: 20 }}
             animate={isVisible ? { opacity: 1, y: 0 } : {}}
@@ -130,26 +143,26 @@ const Skills = () => {
           >
             Skills & Technologies
           </motion.h2>
-          
-          <motion.p 
+
+          <motion.p
             className="section-description text-lg sm:text-xl text-text-secondary max-w-3xl mx-auto leading-relaxed px-4 font-grotesk"
             initial={{ opacity: 0, y: 20 }}
             animate={isVisible ? { opacity: 1, y: 0 } : {}}
             transition={{ duration: 0.8, delay: 0.4 }}
           >
-            A comprehensive toolkit of modern technologies and frameworks that power my creative vision. 
+            A comprehensive toolkit of modern technologies and frameworks that power my creative vision.
             From pixel-perfect interfaces to robust backend systems, I bring ideas to life with precision and style.
           </motion.p>
         </motion.div>
 
-        <motion.div 
+        <motion.div
           className="skills-grid grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4 sm:gap-6 lg:gap-8"
           variants={containerVariants}
           initial="hidden"
           animate={isVisible ? "visible" : "hidden"}
         >
           {skillCategories.map((category, categoryIndex) => (
-            <motion.div 
+            <motion.div
               key={category.title}
               className="skill-category bg-glass backdrop-blur-xl rounded-2xl p-4 sm:p-6 lg:p-8 border border-white/10 transition-all duration-500 shadow-glass hover:shadow-liquid group h-full relative overflow-hidden"
               variants={categoryVariants}
@@ -157,32 +170,32 @@ const Skills = () => {
             >
               {/* Category Header */}
               <div className="text-center mb-4 sm:mb-6 lg:mb-8">
-                <motion.div 
-                  className="category-icon w-12 h-12 sm:w-16 sm:h-16 bg-gradient-to-r from-primary to-accent rounded-full flex items-center justify-center mx-auto mb-3 sm:mb-4 shadow-lg"
+                <motion.div
+                  className="category-icon w-12 h-12 sm:w-16 sm:h-16 bg-gradient-to-r from-primary to-accent rounded-full flex items-center justify-center mx-auto mb-3 sm:mb-4 shadow-lg text-dark text-2xl sm:text-3xl"
                   whileHover={{ rotate: 360 }}
                   transition={{ duration: 0.6 }}
                 >
-                  <i className={`${category.icon} text-lg sm:text-2xl text-dark`}></i>
+                  {category.icon}
                 </motion.div>
                 <h3 className="category-title text-primary text-base sm:text-lg lg:text-xl font-semibold font-departure-mono">{category.title}</h3>
               </div>
-              
+
               {/* Skills List */}
               <div className="skill-items flex flex-col gap-2 sm:gap-3 lg:gap-4">
                 {category.skills.map((skill, skillIndex) => (
-                  <motion.div 
+                  <motion.div
                     key={skill.name}
                     className="skill-item flex items-center gap-2 sm:gap-3 lg:gap-4 p-2 sm:p-3 lg:p-4 bg-white/5 rounded-xl transition-all duration-300 border border-white/5 hover:bg-white/10 hover:border-primary/30 group/item"
                     variants={skillVariants}
                     whileHover={{ x: 6, scale: 1.01 }}
                   >
-                    <div className="skill-icon text-base sm:text-lg lg:text-xl min-w-6 sm:min-w-8 lg:min-w-10 text-primary flex items-center justify-center">
-                      <i className={skill.icon}></i>
+                    <div className="skill-icon text-lg sm:text-xl lg:text-2xl min-w-6 sm:min-w-8 lg:min-w-10 text-primary flex items-center justify-center">
+                      {skill.icon}
                     </div>
                     <div className="skill-info flex-1 min-w-0">
                       <span className="skill-name text-text font-medium text-xs sm:text-sm block truncate font-grotesk">{skill.name}</span>
                       <div className="skill-level relative h-1.5 sm:h-2 bg-white/10 rounded-full overflow-hidden mt-1.5 sm:mt-2">
-                        <motion.div 
+                        <motion.div
                           className="skill-bar h-full bg-gradient-to-r from-primary to-neon rounded-full transition-all duration-2000 ease-out relative"
                           data-level={skill.level}
                           initial={{ width: 0 }}

@@ -1,14 +1,10 @@
-/* Import Google Fonts - Must come first */
-@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap');
-@import url('https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500;600&display=swap');
-@import url('https://fonts.googleapis.com/css2?family=Space+Mono:wght@400;700&display=swap');
-@import url('https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600;700&display=swap');
+/* Google Fonts are now loaded via next/font in layout.tsx */
 
 /* Import Custom Fonts */
-@import url('./styles/fonts.css');
+@import url('../styles/fonts.css');
 
 /* Import Custom Cursor */
-@import url('./styles/cursor.css');
+@import url('../styles/cursor.css');
 
 /* Tailwind CSS directives */
 @tailwind base;
@@ -114,6 +110,7 @@ body {
     0% {
         background-position: -200% 0;
     }
+
     100% {
         background-position: 200% 0;
     }
@@ -158,24 +155,24 @@ body {
 
 /* Timeline specific positioning that's hard to do with Tailwind */
 .timeline-mark {
-  position: absolute;
-  width: 1px;
-  height: 16px;
-  background: #555;
-  transform: translateX(-50%);
-  top: -8px;
-  transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
-  cursor: pointer;
-  z-index: 5;
-  touch-action: manipulation;
+    position: absolute;
+    width: 1px;
+    height: 16px;
+    background: #555;
+    transform: translateX(-50%);
+    top: -8px;
+    transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+    cursor: pointer;
+    z-index: 5;
+    touch-action: manipulation;
 }
 
 @media (max-width: 768px) {
-  .timeline-mark {
-    width: 2px;
-    height: 18px;
-    top: -9px;
-  }
+    .timeline-mark {
+        width: 2px;
+        height: 18px;
+        top: -9px;
+    }
 }
 
 .timeline-mark.active {
@@ -199,34 +196,34 @@ body {
 }
 
 .timeline-label {
-  position: absolute;
-  font-size: 0.8rem;
-  color: #888;
-  font-family: 'Courier New', monospace;
-  transform: translateX(-50%);
-  font-weight: 400;
-  top: 0;
-  transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
-  cursor: pointer;
-  user-select: none;
-  letter-spacing: 0.05em;
-  touch-action: manipulation;
-  padding: 2px 4px;
-  border-radius: 4px;
+    position: absolute;
+    font-size: 0.8rem;
+    color: #888;
+    font-family: 'Courier New', monospace;
+    transform: translateX(-50%);
+    font-weight: 400;
+    top: 0;
+    transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+    cursor: pointer;
+    user-select: none;
+    letter-spacing: 0.05em;
+    touch-action: manipulation;
+    padding: 2px 4px;
+    border-radius: 4px;
 }
 
 @media (max-width: 768px) {
-  .timeline-label {
-    font-size: 0.7rem;
-    padding: 4px 6px;
-  }
+    .timeline-label {
+        font-size: 0.7rem;
+        padding: 4px 6px;
+    }
 }
 
 @media (max-width: 480px) {
-  .timeline-label {
-    font-size: 0.65rem;
-    padding: 3px 5px;
-  }
+    .timeline-label {
+        font-size: 0.65rem;
+        padding: 3px 5px;
+    }
 }
 
 .timeline-label.active {
@@ -238,67 +235,149 @@ body {
 }
 
 @media (max-width: 768px) {
-  .timeline-label.active {
-    transform: translateX(-50%) scale(1.05);
-  }
-  
-  /* Mobile timeline improvements */
-  .timeline-scrubber {
-    height: 3px !important;
-  }
-  
-  .timeline-handle {
-    width: 18px !important;
-    height: 18px !important;
-    box-shadow: 0 0 10px rgba(167, 226, 46, 0.6) !important;
-  }
-  
-  .timeline-text-box {
-    line-height: 1.4 !important;
-  }
+    .timeline-label.active {
+        transform: translateX(-50%) scale(1.05);
+    }
+
+    /* Mobile timeline improvements */
+    .timeline-scrubber {
+        height: 3px !important;
+    }
+
+    .timeline-handle {
+        width: 18px !important;
+        height: 18px !important;
+        box-shadow: 0 0 10px rgba(167, 226, 46, 0.6) !important;
+    }
+
+    .timeline-text-box {
+        line-height: 1.4 !important;
+    }
 }
 
 @media (max-width: 480px) {
-  .timeline-scrubber {
-    height: 4px !important;
-  }
-  
-  .timeline-handle {
-    width: 20px !important;
-    height: 20px !important;
-  }
+    .timeline-scrubber {
+        height: 4px !important;
+    }
+
+    .timeline-handle {
+        width: 20px !important;
+        height: 20px !important;
+    }
 }
 
 /* Floating elements positioning */
-.floating-element:nth-child(1) { top: 15%; left: 8%; animation-delay: 0s; }
-.floating-element:nth-child(2) { top: 55%; left: 85%; animation-delay: 1.5s; }
-.floating-element:nth-child(3) { top: 75%; left: 15%; animation-delay: 3s; }
-.floating-element:nth-child(4) { top: 25%; left: 75%; animation-delay: 4.5s; }
-.floating-element:nth-child(5) { top: 65%; left: 12%; animation-delay: 6s; }
+.floating-element:nth-child(1) {
+    top: 15%;
+    left: 8%;
+    animation-delay: 0s;
+}
+
+.floating-element:nth-child(2) {
+    top: 55%;
+    left: 85%;
+    animation-delay: 1.5s;
+}
+
+.floating-element:nth-child(3) {
+    top: 75%;
+    left: 15%;
+    animation-delay: 3s;
+}
+
+.floating-element:nth-child(4) {
+    top: 25%;
+    left: 75%;
+    animation-delay: 4.5s;
+}
+
+.floating-element:nth-child(5) {
+    top: 65%;
+    left: 12%;
+    animation-delay: 6s;
+}
 
 /* Timeline marks positioning */
-.timeline-mark[data-year="2002"] { left: 0%; }
-.timeline-mark[data-year="2008"] { left: 11.11%; }
-.timeline-mark[data-year="2014"] { left: 22.22%; }
-.timeline-mark[data-year="2018"] { left: 33.33%; }
-.timeline-mark[data-year="2020"] { left: 44.44%; }
-.timeline-mark[data-year="2021"] { left: 55.55%; }
-.timeline-mark[data-year="2022"] { left: 66.66%; }
-.timeline-mark[data-year="2023"] { left: 77.77%; }
-.timeline-mark[data-year="2024"] { left: 88.88%; }
-.timeline-mark[data-year="2025"] { left: 100%; }
+.timeline-mark[data-year="2002"] {
+    left: 0%;
+}
+
+.timeline-mark[data-year="2008"] {
+    left: 11.11%;
+}
+
+.timeline-mark[data-year="2014"] {
+    left: 22.22%;
+}
+
+.timeline-mark[data-year="2018"] {
+    left: 33.33%;
+}
+
+.timeline-mark[data-year="2020"] {
+    left: 44.44%;
+}
+
+.timeline-mark[data-year="2021"] {
+    left: 55.55%;
+}
+
+.timeline-mark[data-year="2022"] {
+    left: 66.66%;
+}
+
+.timeline-mark[data-year="2023"] {
+    left: 77.77%;
+}
+
+.timeline-mark[data-year="2024"] {
+    left: 88.88%;
+}
+
+.timeline-mark[data-year="2025"] {
+    left: 100%;
+}
 
 /* Timeline labels positioning */
-.timeline-label[data-year="2002"] { left: 0%; }
-.timeline-label[data-year="2008"] { left: 11.11%; }
-.timeline-label[data-year="2014"] { left: 22.22%; }
-.timeline-label[data-year="2018"] { left: 33.33%; }
-.timeline-label[data-year="2020"] { left: 44.44%; }
-.timeline-label[data-year="2021"] { left: 55.55%; }
-.timeline-label[data-year="2022"] { left: 66.66%; }
-.timeline-label[data-year="2023"] { left: 77.77%; }
-.timeline-label[data-year="2024"] { left: 88.88%; }
-.timeline-label[data-year="2025"] { left: 100%; }
+.timeline-label[data-year="2002"] {
+    left: 0%;
+}
+
+.timeline-label[data-year="2008"] {
+    left: 11.11%;
+}
+
+.timeline-label[data-year="2014"] {
+    left: 22.22%;
+}
+
+.timeline-label[data-year="2018"] {
+    left: 33.33%;
+}
+
+.timeline-label[data-year="2020"] {
+    left: 44.44%;
+}
+
+.timeline-label[data-year="2021"] {
+    left: 55.55%;
+}
+
+.timeline-label[data-year="2022"] {
+    left: 66.66%;
+}
+
+.timeline-label[data-year="2023"] {
+    left: 77.77%;
+}
+
+.timeline-label[data-year="2024"] {
+    left: 88.88%;
+}
+
+.timeline-label[data-year="2025"] {
+    left: 100%;
+}
 
 /* Page load animation */
 .loaded .hero-content {
@@ -309,71 +388,93 @@ body {
     animation: fadeInUp 0.8s ease-out forwards;
 }
 
-.loaded .hero-right > * {
+.loaded .hero-right>* {
     animation: fadeInRight 0.6s ease-out forwards;
 }
 
-.loaded .hero-right > *:nth-child(1) { animation-delay: 0.2s; }
-.loaded .hero-right > *:nth-child(2) { animation-delay: 0.4s; }
-.loaded .hero-right > *:nth-child(3) { animation-delay: 0.6s; }
-.loaded .hero-right > *:nth-child(4) { animation-delay: 0.8s; }
-.loaded .hero-right > *:nth-child(5) { animation-delay: 1.0s; }
-.loaded .hero-right > *:nth-child(6) { animation-delay: 1.2s; }
+.loaded .hero-right>*:nth-child(1) {
+    animation-delay: 0.2s;
+}
+
+.loaded .hero-right>*:nth-child(2) {
+    animation-delay: 0.4s;
+}
+
+.loaded .hero-right>*:nth-child(3) {
+    animation-delay: 0.6s;
+}
+
+.loaded .hero-right>*:nth-child(4) {
+    animation-delay: 0.8s;
+}
+
+.loaded .hero-right>*:nth-child(5) {
+    animation-delay: 1.0s;
+}
+
+.loaded .hero-right>*:nth-child(6) {
+    animation-delay: 1.2s;
+}
 
 /* Responsive adjustments */
 @media (max-width: 768px) {
     .cursor-none {
         cursor: auto;
     }
-    
+
     .floating-elements {
         display: none;
     }
-    
+
     /* Mobile-specific improvements */
     .hero-section {
         padding-top: 2rem;
     }
-    
+
     .section-header {
         margin-bottom: 3rem;
     }
-    
+
     .section-title {
         font-size: clamp(1.5rem, 6vw, 2.5rem) !important;
         line-height: clamp(1.8rem, 7vw, 3rem) !important;
     }
-    
+
     .section-description {
         font-size: 1rem;
         line-height: 1.6;
     }
-    
+
     /* Improve touch targets */
-    button, a, input, textarea {
+    button,
+    a,
+    input,
+    textarea {
         min-height: 44px;
         min-width: 44px;
     }
-    
+
     /* Better spacing for mobile */
     .py-32 {
         padding-top: 4rem;
         padding-bottom: 4rem;
     }
-    
+
     .py-20 {
         padding-top: 3rem;
         padding-bottom: 3rem;
     }
-    
+
     /* Mobile grid improvements */
     .grid {
         gap: 1rem;
     }
-    
+
     /* Mobile form improvements */
-    .form-input, .form-textarea {
-        font-size: 16px; /* Prevents zoom on iOS */
+    .form-input,
+    .form-textarea {
+        font-size: 16px;
+        /* Prevents zoom on iOS */
     }
 }
 
@@ -383,25 +484,25 @@ body {
         padding-left: 1rem;
         padding-right: 1rem;
     }
-    
+
     .px-4 {
         padding-left: 1rem;
         padding-right: 1rem;
     }
-    
+
     .gap-8 {
         gap: 1.5rem;
     }
-    
+
     .gap-16 {
         gap: 2rem;
     }
-    
+
     /* Reduce padding on very small screens */
     .p-6 {
         padding: 1rem;
     }
-    
+
     .p-8 {
         padding: 1.5rem;
     }
@@ -488,7 +589,8 @@ body {
 }
 
 /* Global font family override */
-body, html {
+body,
+html {
     font-family: 'Departure Mono', 'SF Mono', 'Monaco', 'Menlo', 'Ubuntu Mono', monospace !important;
 }
 
@@ -505,18 +607,23 @@ body, html {
 
 /* Smooth floating animation for creative elements */
 @keyframes float-slow {
-    0%, 100% {
+
+    0%,
+    100% {
         transform: translateY(0px) rotate(0deg);
         opacity: 0.6;
     }
+
     25% {
         transform: translateY(-8px) rotate(0.5deg);
         opacity: 0.75;
     }
+
     50% {
         transform: translateY(-12px) rotate(1deg);
         opacity: 0.8;
     }
+
     75% {
         transform: translateY(-4px) rotate(0.5deg);
         opacity: 0.7;
@@ -530,10 +637,13 @@ body, html {
 
 /* Smoother pulsing effect */
 @keyframes creative-pulse {
-    0%, 100% {
+
+    0%,
+    100% {
         opacity: 0.4;
         transform: scale(1);
     }
+
     50% {
         opacity: 0.7;
         transform: scale(1.05);
@@ -554,54 +664,55 @@ body, html {
         filter: grayscale(25%) contrast(1.25) brightness(0.75) saturate(1.05);
         /* Scroll transforms handled by JavaScript */
     }
-    
+
     .hero-section .creative-bg:hover {
         filter: grayscale(20%) contrast(1.3) brightness(0.8) saturate(1.1);
         /* No transform overrides for mobile */
     }
-    
+
     /* Mobile specific spotlight positioning */
     .bg-gradient-radial {
         background: radial-gradient(ellipse at top center, var(--tw-gradient-stops));
     }
-    
+
     /* Optimize scroll performance on mobile */
     .hero-section {
         contain: layout style paint;
-        transform: translateZ(0); /* Force hardware acceleration */
+        transform: translateZ(0);
+        /* Force hardware acceleration */
     }
-    
+
     /* Smoother floating elements on mobile */
     .animate-float-slow {
         animation: float-slow 20s ease-in-out infinite;
     }
-    
+
     /* Reduce complexity on mobile */
     .bg-gradient-radial {
         will-change: transform, opacity;
         transform: translateZ(0);
     }
-    
+
     /* Enhanced mobile social links optimizations */
     .social-links {
         flex-direction: column;
         gap: 1rem;
     }
-    
+
     .social-link {
         padding: 1rem 1.25rem;
     }
-    
+
     .social-link div:first-child div:first-child {
         font-size: 0.75rem;
     }
-    
+
     .social-link div:first-child div:last-child {
         font-size: 0.8rem;
     }
-    
+
     /* Mobile typography adjustments */
-  
+
     .hero-title p {
         font-size: clamp(1.1rem, 4vw, 1.5rem) !important;
     }
@@ -613,7 +724,7 @@ body, html {
         background-position: center 30%;
         transform: scale(1.03) !important;
     }
-    
+
     .bg-gradient-radial {
         background: radial-gradient(ellipse at right center, var(--tw-gradient-stops));
     }
@@ -625,11 +736,11 @@ body, html {
         min-height: 100vh;
         padding-top: 1rem;
     }
-    
+
     .min-h-screen {
         min-height: 100vh;
     }
-    
+
     .hero-section .creative-bg {
         background-position: center center;
         background-size: cover;
@@ -656,7 +767,8 @@ body, html {
     color: #d1d5db;
 }
 
-.thought-content ul, .thought-content ol {
+.thought-content ul,
+.thought-content ol {
     margin: 1.5rem 0;
     padding-left: 2rem;
     color: #d1d5db;

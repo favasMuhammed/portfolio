@@ -1,3 +1,5 @@
+"use client";
+
 import { useState, useRef } from 'react'
 import { motion } from 'framer-motion'
 import emailjs from '@emailjs/browser'
@@ -12,7 +14,7 @@ const Newsletter = () => {
 
   const handleSubmit = async (e) => {
     e.preventDefault()
-    
+
     // Basic email validation
     const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/
     if (!emailRegex.test(email)) {
@@ -52,10 +54,10 @@ The subscriber is interested in your thoughts on building digital experiences an
 
       // EmailJS credentials
       await emailjs.send(
-        import.meta.env.VITE_EMAILJS_SERVICE_ID || 'service_dnfvngv',
-        import.meta.env.VITE_EMAILJS_TEMPLATE_ID || 'template_zneqdh4', 
+        process.env.NEXT_PUBLIC_EMAILJS_SERVICE_ID || 'service_dnfvngv',
+        process.env.NEXT_PUBLIC_EMAILJS_TEMPLATE_ID || 'template_zneqdh4',
         templateParams,
-        import.meta.env.VITE_EMAILJS_PUBLIC_KEY || '_dOXFXApqN2b9IZT7'
+        process.env.NEXT_PUBLIC_EMAILJS_PUBLIC_KEY || '_dOXFXApqN2b9IZT7'
       )
 
       setStatus('success')
@@ -65,7 +67,7 @@ The subscriber is interested in your thoughts on building digital experiences an
       if (recaptchaRef.current) {
         recaptchaRef.current.reset()
       }
-      
+
       // Reset status after 5 seconds
       setTimeout(() => {
         setStatus('')
@@ -76,7 +78,7 @@ The subscriber is interested in your thoughts on building digital experiences an
       console.error('Newsletter subscription error:', error)
       setStatus('error')
       setMessage('Something went wrong. Please try again.')
-      
+
       // Reset status after 5 seconds
       setTimeout(() => {
         setStatus('')
@@ -120,7 +122,7 @@ The subscriber is interested in your thoughts on building digital experiences an
           <div className="flex justify-center">
             <ReCAPTCHA
               ref={recaptchaRef}
-              sitekey={import.meta.env.VITE_RECAPTCHA_SITE_KEY || '6LdWwbQrAAAAALATgchrnKw5PbXvfvygSF8GnER5'}
+              sitekey={process.env.NEXT_PUBLIC_RECAPTCHA_SITE_KEY || '6LdWwbQrAAAAALATgchrnKw5PbXvfvygSF8GnER5'}
               onChange={handleRecaptchaChange}
               theme="dark"
               size="compact"
@@ -130,11 +132,10 @@ The subscriber is interested in your thoughts on building digital experiences an
           <motion.button
             type="submit"
             disabled={status === 'loading' || !email || !recaptchaToken}
-            className={`w-full py-3 rounded-lg font-semibold transition-all duration-300 font-grotesk ${
-              status === 'loading' || !email || !recaptchaToken
-                ? 'bg-gray-600 text-gray-400 cursor-not-allowed'
-                : 'bg-primary text-dark hover:bg-primary-dark hover:-translate-y-1 hover:shadow-lg hover:shadow-primary/25'
-            }`}
+            className={`w-full py-3 rounded-lg font-semibold transition-all duration-300 font-grotesk ${status === 'loading' || !email || !recaptchaToken
+              ? 'bg-gray-600 text-gray-400 cursor-not-allowed'
+              : 'bg-primary text-dark hover:bg-primary-dark hover:-translate-y-1 hover:shadow-lg hover:shadow-primary/25'
+              }`}
             whileHover={status !== 'loading' && email && recaptchaToken ? { scale: 1.02 } : {}}
             whileTap={status !== 'loading' && email && recaptchaToken ? { scale: 0.98 } : {}}
           >
@@ -154,13 +155,12 @@ The subscriber is interested in your thoughts on building digital experiences an
           <motion.div
             initial={{ opacity: 0, y: 10 }}
             animate={{ opacity: 1, y: 0 }}
-            className={`mt-4 p-3 rounded-lg text-sm font-grotesk ${
-              status === 'success'
-                ? 'bg-green-500/20 text-green-400 border border-green-500/30'
-                : status === 'error'
+            className={`mt-4 p-3 rounded-lg text-sm font-grotesk ${status === 'success'
+              ? 'bg-green-500/20 text-green-400 border border-green-500/30'
+              : status === 'error'
                 ? 'bg-red-500/20 text-red-400 border border-red-500/30'
                 : ''
-            }`}
+              }`}
           >
             {message}
           </motion.div>

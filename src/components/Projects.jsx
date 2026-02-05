@@ -1,5 +1,17 @@
+"use client";
+
 import { useState, useEffect, useRef } from 'react'
 import { motion } from 'framer-motion'
+import { FaExternalLinkAlt, FaGithub, FaRocket, FaArrowRight } from 'react-icons/fa'
+import {
+  SiReact, SiTypescript, SiNodedotjs, SiExpress, SiTailwindcss,
+  SiJavascript, SiPython, SiTensorflow, SiOpencv, SiDjango, SiPostgresql
+} from 'react-icons/si'
+import {
+  LuLayoutGrid, LuGlobe, LuBrain, LuSmartphone,
+  LuGraduationCap, LuUtensils, LuMic, LuShoppingCart
+} from 'react-icons/lu'
+import { TbChalkboard } from 'react-icons/tb'
 
 const Projects = () => {
   const [isVisible, setIsVisible] = useState(false)
@@ -31,7 +43,7 @@ const Projects = () => {
       category: "web",
       technologies: ["React", "TypeScript", "Node.js"],
       features: ["Real-time Sync", "AI Grading", "Analytics"],
-      icon: "fas fa-chalkboard-teacher",
+      icon: <TbChalkboard />,
       githubUrl: "https://github.com/favasMuhammed/TeacherSync",
       liveUrl: "#",
       image: "/api/placeholder/400/300"
@@ -43,7 +55,7 @@ const Projects = () => {
       category: "web",
       technologies: ["TypeScript", "React", "Express"],
       features: ["Student Portal", "Course Management", "Reports"],
-      icon: "fas fa-graduation-cap",
+      icon: <LuGraduationCap />,
       githubUrl: "https://github.com/favasMuhammed/EduManage",
       liveUrl: "#",
       image: "/api/placeholder/400/300"
@@ -55,7 +67,7 @@ const Projects = () => {
       category: "web",
       technologies: ["React", "Tailwind CSS", "JavaScript"],
       features: ["Interactive Menu", "Reservations", "Dashboard"],
-      icon: "fas fa-utensils",
+      icon: <LuUtensils />,
       githubUrl: "https://github.com/favasMuhammed/gourmet-delight-restaurant",
       liveUrl: "#",
       image: "/api/placeholder/400/300"
@@ -67,7 +79,7 @@ const Projects = () => {
       category: "ai",
       technologies: ["Python", "TensorFlow", "OpenCV"],
       features: ["Real-time Analysis", "ML Models", "API"],
-      icon: "fas fa-microphone",
+      icon: <LuMic />,
       githubUrl: "https://github.com/favasMuhammed/SpeechEmotionRecognition2025",
       liveUrl: "#",
       image: "/api/placeholder/400/300"
@@ -79,7 +91,7 @@ const Projects = () => {
       category: "ai",
       technologies: ["Django", "Python", "PostgreSQL"],
       features: ["Auto Questions", "Adaptive Tests", "Analytics"],
-      icon: "fas fa-brain",
+      icon: <LuBrain />,
       githubUrl: "https://github.com/favasMuhammed/AiExam-django",
       liveUrl: "#",
       image: "/api/placeholder/400/300"
@@ -91,7 +103,7 @@ const Projects = () => {
       category: "web",
       technologies: ["Django", "JavaScript", "Tailwind CSS"],
       features: ["Product Catalog", "Payment Gateway", "Order Tracking"],
-      icon: "fas fa-shopping-cart",
+      icon: <LuShoppingCart />,
       githubUrl: "https://github.com/favasMuhammed/DECOM",
       liveUrl: "#",
       image: "/api/placeholder/400/300"
@@ -99,14 +111,14 @@ const Projects = () => {
   ]
 
   const categories = [
-    { id: 'all', name: 'All Projects', icon: 'fas fa-th-large' },
-    { id: 'web', name: 'Web Apps', icon: 'fas fa-globe' },
-    { id: 'ai', name: 'AI/ML', icon: 'fas fa-brain' },
-    { id: 'mobile', name: 'Mobile', icon: 'fas fa-mobile-alt' }
+    { id: 'all', name: 'All Projects', icon: <LuLayoutGrid /> },
+    { id: 'web', name: 'Web Apps', icon: <LuGlobe /> },
+    { id: 'ai', name: 'AI/ML', icon: <LuBrain /> },
+    { id: 'mobile', name: 'Mobile', icon: <LuSmartphone /> }
   ]
 
-  const filteredProjects = activeFilter === 'all' 
-    ? projects 
+  const filteredProjects = activeFilter === 'all'
+    ? projects
     : projects.filter(project => project.category === activeFilter)
 
   const containerVariants = {
@@ -145,9 +157,9 @@ const Projects = () => {
   }
 
   return (
-    <section 
+    <section
       id="projects"
-      ref={projectsRef} 
+      ref={projectsRef}
       className="projects-section py-32 bg-darker relative overflow-hidden"
     >
       {/* Background Elements */}
@@ -158,21 +170,21 @@ const Projects = () => {
       </div>
 
       <div className="container max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
-        <motion.div 
+        <motion.div
           className="section-header text-center mb-20"
           initial={{ opacity: 0, y: 30 }}
           animate={isVisible ? { opacity: 1, y: 0 } : {}}
           transition={{ duration: 0.8 }}
         >
-          <motion.div 
+          <motion.div
             className="section-icon w-20 h-20 bg-gradient-to-r from-primary to-neon rounded-full flex items-center justify-center mx-auto mb-6 shadow-liquid"
             whileHover={{ scale: 1.1, rotate: 5 }}
             transition={{ duration: 0.3 }}
           >
-            <i className="fas fa-rocket text-3xl text-dark"></i>
+            <FaRocket className="text-3xl text-dark" />
           </motion.div>
-          
-          <motion.h2 
+
+          <motion.h2
             className="section-title text-3xl sm:text-4xl lg:text-5xl font-bold text-text mb-6 font-departure-mono"
             initial={{ opacity: 0, y: 20 }}
             animate={isVisible ? { opacity: 1, y: 0 } : {}}
@@ -181,20 +193,20 @@ const Projects = () => {
           >
             Featured Projects
           </motion.h2>
-          
-          <motion.p 
+
+          <motion.p
             className="section-description text-lg sm:text-xl text-text-secondary max-w-3xl mx-auto leading-relaxed px-4 font-grotesk"
             initial={{ opacity: 0, y: 20 }}
             animate={isVisible ? { opacity: 1, y: 0 } : {}}
             transition={{ duration: 0.8, delay: 0.4 }}
           >
-            A curated collection of innovative projects that showcase my expertise in modern web technologies, 
+            A curated collection of innovative projects that showcase my expertise in modern web technologies,
             artificial intelligence, and user experience design. Each project represents a unique challenge and creative solution.
           </motion.p>
         </motion.div>
 
         {/* Filter Buttons */}
-        <motion.div 
+        <motion.div
           className="filter-buttons flex flex-wrap justify-center gap-4 mb-16 px-4"
           variants={containerVariants}
           initial="hidden"
@@ -204,29 +216,28 @@ const Projects = () => {
             <motion.button
               key={category.id}
               onClick={() => setActiveFilter(category.id)}
-              className={`filter-btn px-4 sm:px-6 py-2 sm:py-3 rounded-lg font-medium transition-all duration-300 flex items-center gap-2 text-sm sm:text-base ${
-                activeFilter === category.id
-                  ? 'bg-primary text-dark shadow-liquid'
-                  : 'bg-glass text-text-secondary hover:text-primary hover:bg-white/10 border border-white/10'
-              }`}
+              className={`filter-btn px-4 sm:px-6 py-2 sm:py-3 rounded-lg font-medium transition-all duration-300 flex items-center gap-2 text-sm sm:text-base ${activeFilter === category.id
+                ? 'bg-primary text-dark shadow-liquid'
+                : 'bg-glass text-text-secondary hover:text-primary hover:bg-white/10 border border-white/10'
+                }`}
               variants={filterVariants}
               whileHover={{ scale: 1.05 }}
               whileTap={{ scale: 0.95 }}
             >
-              <i className={category.icon}></i>
+              <span className="text-lg">{category.icon}</span>
               <span className="hidden sm:inline">{category.name}</span>
             </motion.button>
           ))}
         </motion.div>
 
-        <motion.div 
+        <motion.div
           className="projects-grid grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 sm:gap-6 lg:gap-8"
           variants={containerVariants}
           initial="hidden"
           animate={isVisible ? "visible" : "hidden"}
         >
           {filteredProjects.map((project, index) => (
-            <motion.div 
+            <motion.div
               key={project.id}
               className="project-card group bg-glass backdrop-blur-xl rounded-2xl overflow-hidden border border-white/10 transition-all duration-500 shadow-glass hover:shadow-liquid h-full flex flex-col"
               variants={projectVariants}
@@ -237,29 +248,29 @@ const Projects = () => {
               <div className="project-header h-24 sm:h-32 bg-gradient-to-br from-dark/80 to-dark/60 relative flex items-center justify-center overflow-hidden flex-shrink-0 border-b border-white/10">
                 <div className="project-overlay absolute inset-0 bg-black/60 flex items-center justify-center gap-4 opacity-0 transition-all duration-500 group-hover:opacity-100">
                   <div className="project-links flex gap-4">
-                    <motion.a 
-                      href={project.liveUrl} 
+                    <motion.a
+                      href={project.liveUrl}
                       className="project-link w-12 h-12 bg-primary/90 backdrop-blur-md rounded-full flex items-center justify-center text-dark no-underline transition-all duration-300 transform scale-0 group-hover:scale-100 hover:bg-primary hover:scale-110 shadow-lg"
                       title="Live Demo"
                       whileHover={{ scale: 1.1 }}
                       whileTap={{ scale: 0.9 }}
                     >
-                      <i className="fas fa-external-link-alt"></i>
+                      <FaExternalLinkAlt />
                     </motion.a>
-                    <motion.a 
-                      href={project.githubUrl} 
+                    <motion.a
+                      href={project.githubUrl}
                       className="project-link w-12 h-12 bg-primary/90 backdrop-blur-md rounded-full flex items-center justify-center text-dark no-underline transition-all duration-300 transform scale-0 group-hover:scale-100 hover:bg-primary hover:scale-110 shadow-lg"
-                      title="View Code" 
-                      target="_blank" 
+                      title="View Code"
+                      target="_blank"
                       rel="noopener noreferrer"
                       whileHover={{ scale: 1.1 }}
                       whileTap={{ scale: 0.9 }}
                     >
-                      <i className="fab fa-github"></i>
+                      <FaGithub />
                     </motion.a>
                   </div>
                 </div>
-                
+
                 {/* Technology Tags */}
                 <div className="project-tech absolute top-3 right-3 flex gap-2">
                   {project.technologies.slice(0, 2).map((tech, techIndex) => (
@@ -268,13 +279,13 @@ const Projects = () => {
                     </span>
                   ))}
                 </div>
-                
+
                 {/* Project Icon */}
                 <div className="project-icon text-2xl sm:text-3xl lg:text-4xl text-primary/80 group-hover:text-primary transition-colors duration-300">
-                  <i className={project.icon}></i>
+                  {project.icon}
                 </div>
               </div>
-              
+
               {/* Project Content */}
               <div className="project-content p-3 sm:p-4 lg:p-6 flex-1 flex flex-col">
                 <h3 className="project-title text-primary mb-2 sm:mb-3 text-base sm:text-lg lg:text-xl font-semibold leading-tight font-departure-mono">{project.title}</h3>
@@ -293,7 +304,7 @@ const Projects = () => {
           ))}
         </motion.div>
 
-        <motion.div 
+        <motion.div
           className="text-center mt-16 px-4"
           initial={{ opacity: 0, y: 20 }}
           animate={isVisible ? { opacity: 1, y: 0 } : {}}
@@ -307,9 +318,9 @@ const Projects = () => {
             whileHover={{ scale: 1.05 }}
             whileTap={{ scale: 0.95 }}
           >
-            <i className="fab fa-github text-lg sm:text-xl"></i>
+            <FaGithub className="text-lg sm:text-xl" />
             <span className="text-sm sm:text-base">View All Projects</span>
-            <i className="fas fa-arrow-right text-sm sm:text-base"></i>
+            <FaArrowRight className="text-sm sm:text-base" />
           </motion.a>
         </motion.div>
       </div>

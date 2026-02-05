@@ -1,29 +1,53 @@
+"use client";
+
 import { useState, useEffect } from 'react'
 import { motion, AnimatePresence } from 'framer-motion'
-import { Link, useLocation, useNavigate } from 'react-router-dom'
+import Link from 'next/link'
+import { usePathname, useRouter } from 'next/navigation'
 
 const Navbar = () => {
   const [isScrolled, setIsScrolled] = useState(false)
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false)
   const [hoveredLink, setHoveredLink] = useState(null)
-  const location = useLocation()
-  const navigate = useNavigate()
+  const [activeSection, setActiveSection] = useState('home')
+
+  const pathname = usePathname()
+  const router = useRouter()
 
   useEffect(() => {
     const handleScroll = () => {
       setIsScrolled(window.scrollY > 80)
+
+      // Scroll spy logic
+      const sections = ['home', 'skills', 'projects', 'experience', 'certifications', 'contact']
+      const scrollPosition = window.scrollY + 100
+
+      for (const section of sections) {
+        const element = document.getElementById(section)
+        if (element) {
+          const offsetTop = element.offsetTop
+          const offsetBottom = offsetTop + element.offsetHeight
+
+          if (scrollPosition >= offsetTop && scrollPosition < offsetBottom) {
+            setActiveSection(section)
+            break
+          }
+        }
+      }
     }
+
+    handleScroll() // Initial call
     window.addEventListener('scroll', handleScroll)
     return () => window.removeEventListener('scroll', handleScroll)
   }, [])
 
   const scrollToSection = (sectionId) => {
     // If we're not on the homepage, navigate to homepage first
-    if (location.pathname !== '/') {
-      navigate(`/#${sectionId}`)
+    if (pathname !== '/') {
+      router.push(`/#${sectionId}`)
       return
     }
-    
+
     // If we're on homepage, scroll to section
     const element = document.getElementById(sectionId)
     if (element) {
@@ -57,8 +81,8 @@ const Navbar = () => {
       {/* Brand / Logo */}
       <motion.button
         onClick={() => {
-          if (location.pathname !== '/') {
-            navigate('/')
+          if (pathname !== '/') {
+            router.push('/')
           } else {
             scrollToSection('home')
           }
@@ -85,7 +109,7 @@ const Navbar = () => {
               whileTap={{ scale: 0.95 }}
             >
               <Link
-                to={item.path}
+                href={item.path}
                 className="relative text-gray-700 dark:text-gray-300 text-sm font-medium py-2 px-3 rounded-lg group transition-colors no-underline block"
               >
                 <span className="relative z-10">{item.label}</span>
@@ -111,20 +135,22 @@ const Navbar = () => {
               onClick={() => scrollToSection(item.id)}
               onHoverStart={() => setHoveredLink(item.id)}
               onHoverEnd={() => setHoveredLink(null)}
-              className="relative text-gray-700 dark:text-gray-300 text-sm font-medium py-2 px-3 rounded-lg group transition-colors"
+              className={`relative text-gray-700 dark:text-gray-300 text-sm font-medium py-2 px-3 rounded-lg group transition-colors ${activeSection === item.id ? 'text-primary dark:text-primary' : ''
+                }`}
               whileHover={{ scale: 1.05, y: -2 }}
               whileTap={{ scale: 0.95 }}
             >
               <span className="relative z-10">{item.label}</span>
 
               {/* Liquid Underlay */}
-              <span className="absolute inset-0 bg-gradient-to-r from-purple-500/10 via-pink-500/5 to-cyan-500/10 rounded-lg opacity-0 group-hover:opacity-100 transition-all duration-500 -z-10" />
+              <span className={`absolute inset-0 bg-gradient-to-r from-purple-500/10 via-pink-500/5 to-cyan-500/10 rounded-lg transition-all duration-500 -z-10 ${activeSection === item.id ? 'opacity-100' : 'opacity-0 group-hover:opacity-100'
+                }`} />
 
               {/* Animated Underline */}
               <motion.span
                 className="absolute -bottom-1 left-0 h-[2px] bg-gradient-to-r from-purple-500 via-pink-500 to-cyan-500 rounded-full"
                 initial={{ width: 0 }}
-                animate={{ width: hoveredLink === item.id ? '100%' : 0 }}
+                animate={{ width: hoveredLink === item.id || activeSection === item.id ? '100%' : 0 }}
                 transition={{ duration: 0.4, ease: 'easeInOut' }}
               />
 
@@ -172,7 +198,7 @@ const Navbar = () => {
                     whileTap={{ scale: 0.98 }}
                   >
                     <Link
-                      to={item.path}
+                      href={item.path}
                       onClick={() => setIsMobileMenuOpen(false)}
                       className="relative text-gray-700 dark:text-gray-300 text-base py-3 px-4 rounded-lg group text-left w-full no-underline block"
                     >

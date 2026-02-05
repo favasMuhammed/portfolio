@@ -1,3 +1,5 @@
+"use client";
+
 import { useEffect, useRef } from 'react'
 
 const FloatingElements = () => {
@@ -6,7 +8,7 @@ const FloatingElements = () => {
   useEffect(() => {
     const handleScroll = () => {
       const scrolled = window.pageYOffset
-      
+
       elementsRef.current.forEach((element, index) => {
         if (element) {
           const speed = element.dataset.speed
@@ -38,7 +40,7 @@ const FloatingElements = () => {
   return (
     <div className="hero-background absolute top-0 left-0 w-full h-full pointer-events-none z-10">
       <div className="floating-elements absolute w-full h-full pointer-events-none">
-        <div 
+        <div
           ref={el => elementsRef.current[0] = el}
           data-speed="2"
           className="floating-element absolute text-primary text-2xl opacity-15 animate-float transition-all duration-300 font-departure-mono cursor-pointer"
@@ -48,7 +50,7 @@ const FloatingElements = () => {
         >
           &lt;/&gt;
         </div>
-        <div 
+        <div
           ref={el => elementsRef.current[1] = el}
           data-speed="1.5"
           className="floating-element absolute text-primary text-2xl opacity-15 animate-float transition-all duration-300 font-departure-mono cursor-pointer"
@@ -58,7 +60,7 @@ const FloatingElements = () => {
         >
           {`{ }`}
         </div>
-        <div 
+        <div
           ref={el => elementsRef.current[2] = el}
           data-speed="3"
           className="floating-element absolute text-primary text-2xl opacity-15 animate-float transition-all duration-300 font-departure-mono cursor-pointer"
@@ -68,7 +70,7 @@ const FloatingElements = () => {
         >
           [ ]
         </div>
-        <div 
+        <div
           ref={el => elementsRef.current[3] = el}
           data-speed="2.5"
           className="floating-element absolute text-primary text-2xl opacity-15 animate-float transition-all duration-300 font-departure-mono cursor-pointer"
@@ -78,7 +80,7 @@ const FloatingElements = () => {
         >
           &lt;/&gt;
         </div>
-        <div 
+        <div
           ref={el => elementsRef.current[4] = el}
           data-speed="1"
           className="floating-element absolute text-primary text-2xl opacity-15 animate-float transition-all duration-300 font-departure-mono cursor-pointer"

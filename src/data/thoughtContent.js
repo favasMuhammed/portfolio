@@ -1,22 +1,11 @@
-import { useState, useEffect } from 'react'
-import { useParams, Link } from 'react-router-dom'
-import { motion } from 'framer-motion'
-import Navbar from '../components/Navbar'
-import Footer from '../components/Footer'
-
-const ThoughtPost = () => {
-  const { slug } = useParams()
-  const [post, setPost] = useState(null)
-
-  // Thought posts data
-  const thoughtPosts = {
+export const thoughtContent = {
     'robots-that-code-better-than-me': {
-      id: 1,
-      date: "Jan 15, 2025",
-      title: "Robots That Code Better Than Me",
-      category: "AI & Development",
-      readTime: "3 min read",
-      content: `
+        id: 1,
+        date: "Jan 15, 2025",
+        title: "Robots That Code Better Than Me",
+        category: "AI & Development",
+        readTime: "3 min read",
+        content: `
         <p>AI just wrote my entire authentication system in 10 minutes. I'm not even mad, I'm impressed.</p>
         
         <p>Yesterday, I spent three hours debugging a login flow that had been driving me crazy for weeks. User sessions kept expiring randomly, the refresh token logic was a mess, and don't even get me started on the password reset functionality.</p>
@@ -59,12 +48,12 @@ const ThoughtPost = () => {
       `
     },
     'what-i-got-wrong-this-year': {
-      id: 2,
-      date: "Dec 28, 2024",
-      title: "What I Got Wrong This Year",
-      category: "Reflection",
-      readTime: "5 min read",
-      content: `
+        id: 2,
+        date: "Dec 28, 2024",
+        title: "What I Got Wrong This Year",
+        category: "Reflection",
+        readTime: "5 min read",
+        content: `
         <p>Spoiler alert: Almost everything.</p>
         
         <p>As I sit here on the last week of 2024, reflecting on the year that was, I'm struck by how consistently wrong I was about almost everything. And honestly? It's been one of my most valuable years yet.</p>
@@ -105,12 +94,12 @@ const ThoughtPost = () => {
       `
     },
     'why-every-icon-strategy-fails': {
-      id: 3,
-      date: "Nov 12, 2024",
-      title: "Why Every Icon Strategy Fails",
-      category: "Design Systems",
-      readTime: "4 min read",
-      content: `
+        id: 3,
+        date: "Nov 12, 2024",
+        title: "Why Every Icon Strategy Fails",
+        category: "Design Systems",
+        readTime: "4 min read",
+        content: `
         <p>We spend weeks debating icon libraries, only to end up with a Frankenstein's monster of SVGs, font icons, and random PNGs.</p>
         
         <p>I've been part of this dance more times than I care to admit. It always starts the same way:</p>
@@ -170,12 +159,12 @@ const ThoughtPost = () => {
       `
     },
     'breaking-things-to-learn-them': {
-      id: 4,
-      date: "Oct 25, 2024",
-      title: "Breaking Things to Learn Them",
-      category: "Learning",
-      readTime: "6 min read",
-      content: `
+        id: 4,
+        date: "Oct 25, 2024",
+        title: "Breaking Things to Learn Them",
+        category: "Learning",
+        readTime: "6 min read",
+        content: `
         <p>The best way to understand how something works? Break it. Systematically. On purpose.</p>
         
         <p>I learned this lesson the hard way when I spent three weeks trying to understand React's reconciliation algorithm by reading documentation. The concepts were abstract, the examples were simple, and I felt like I was missing something fundamental.</p>
@@ -251,12 +240,12 @@ const ThoughtPost = () => {
       `
     },
     'teaching-spreadsheet-people-to-dream': {
-      id: 5,
-      date: "Sep 18, 2024",
-      title: "Teaching Spreadsheet People to Dream",
-      category: "Leadership",
-      readTime: "4 min read",
-      content: `
+        id: 5,
+        date: "Sep 18, 2024",
+        title: "Teaching Spreadsheet People to Dream",
+        category: "Leadership",
+        readTime: "4 min read",
+        content: `
         <p>How do you convince someone who lives in Excel that they can build apps?</p>
         
         <p>Last month, I was tasked with introducing our finance team to automation. These are people who've built intricate spreadsheet systems that would make a software engineer weep—nested IF statements 20 levels deep, VLOOKUP functions that span multiple workbooks, macros that somehow keep the entire department running.</p>
@@ -352,12 +341,12 @@ const ThoughtPost = () => {
       `
     },
     'the-internets-best-kept-ai-secrets': {
-      id: 6,
-      date: "Aug 14, 2024",
-      title: "The Internet's Best Kept AI Secrets",
-      category: "AI & Tools",
-      readTime: "7 min read",
-      content: `
+        id: 6,
+        date: "Aug 14, 2024",
+        title: "The Internet's Best Kept AI Secrets",
+        category: "AI & Tools",
+        readTime: "7 min read",
+        content: `
         <p>While everyone argues about ChatGPT, there are dozens of AI tools quietly revolutionizing how we work.</p>
         
         <p>I've spent the last year diving deep into the AI tool ecosystem, testing everything from code generators to design assistants. Most are overhyped garbage. But a few are genuinely game-changing.</p>
@@ -432,12 +421,12 @@ const ThoughtPost = () => {
       `
     },
     'how-i-built-nothing-and-called-it-content': {
-      id: 7,
-      date: "Jul 20, 2024",
-      title: "How I Built Nothing and Called It Content",
-      category: "Content Strategy",
-      readTime: "3 min read",
-      content: `
+        id: 7,
+        date: "Jul 20, 2024",
+        title: "How I Built Nothing and Called It Content",
+        category: "Content Strategy",
+        readTime: "3 min read",
+        content: `
         <p>Six months of 'content strategy' later, I realized I was just procrastinating with extra steps.</p>
         
         <p>It started innocently enough. I wanted to build an audience, so I decided to "create content." I spent weeks researching content strategies, analyzing successful creators, and building elaborate content calendars.</p>
@@ -516,12 +505,12 @@ const ThoughtPost = () => {
       `
     },
     'click-here-to-edit-reality': {
-      id: 8,
-      date: "Jun 8, 2024",
-      title: "Click Here to Edit Reality",
-      category: "Web Development",
-      readTime: "5 min read",
-      content: `
+        id: 8,
+        date: "Jun 8, 2024",
+        title: "Click Here to Edit Reality",
+        category: "Web Development",
+        readTime: "5 min read",
+        content: `
         <p>The moment I realized I could change anything on any website with developer tools was the moment I understood real power.</p>
         
         <p>I was 16, frustrated with my school's website. The grade portal was clunky, the design was from 2003, and the navigation made no sense. Then I discovered "Inspect Element."</p>
@@ -624,12 +613,12 @@ const ThoughtPost = () => {
       `
     },
     'why-great-feels-impossible': {
-      id: 9,
-      date: "May 15, 2024",
-      title: "Why Great Feels Impossible",
-      category: "Mindset",
-      readTime: "6 min read",
-      content: `
+        id: 9,
+        date: "May 15, 2024",
+        title: "Why Great Feels Impossible",
+        category: "Mindset",
+        readTime: "6 min read",
+        content: `
         <p>Good is easy. Great is terrifying.</p>
         
         <p>I've shipped dozens of "good" projects. They work, they solve problems, they get the job done. Users are satisfied, stakeholders are happy, and I feel competent.</p>
@@ -741,12 +730,12 @@ const ThoughtPost = () => {
       `
     },
     'hiring-designers-who-actually-design': {
-      id: 10,
-      date: "Apr 22, 2024",
-      title: "Hiring Designers Who Actually Design",
-      category: "Hiring & Teams",
-      readTime: "4 min read",
-      content: `
+        id: 10,
+        date: "Apr 22, 2024",
+        title: "Hiring Designers Who Actually Design",
+        category: "Hiring & Teams",
+        readTime: "4 min read",
+        content: `
         <p>Too many 'designers' can't design.</p>
         
         <p>They can pixel-push and color-match, but ask them to solve a problem and they freeze. I've interviewed dozens of designers over the years, and I've learned to spot the difference between someone who can use design tools and someone who can actually design.</p>
@@ -869,12 +858,12 @@ const ThoughtPost = () => {
       `
     },
     'from-bio-science-to-bug-fixes': {
-      id: 11,
-      date: "Mar 30, 2024",
-      title: "From Bio Science to Bug Fixes",
-      category: "Career Journey",
-      readTime: "5 min read",
-      content: `
+        id: 11,
+        date: "Mar 30, 2024",
+        title: "From Bio Science to Bug Fixes",
+        category: "Career Journey",
+        readTime: "5 min read",
+        content: `
         <p>How studying cell mitosis prepared me for debugging React components.</p>
         
         <p>Plot twist: both involve things dividing when they shouldn't.</p>
@@ -996,12 +985,12 @@ const ThoughtPost = () => {
       `
     },
     'talks-that-nobody-remembers': {
-      id: 12,
-      date: "Feb 14, 2024",
-      title: "Talks That Nobody Remembers",
-      category: "Communication",
-      readTime: "4 min read",
-      content: `
+        id: 12,
+        date: "Feb 14, 2024",
+        title: "Talks That Nobody Remembers",
+        category: "Communication",
+        readTime: "4 min read",
+        content: `
         <p>I've given 47 presentations in my career. People remember exactly zero of them.</p>
         
         <p>This isn't false modesty—I've literally asked. Six months after giving what I thought was a brilliant talk about React performance optimization, I ran into an attendee. They remembered being there but couldn't recall a single point I made.</p>
@@ -1126,123 +1115,4 @@ const ThoughtPost = () => {
         <p>Everything else is just details.</p>
       `
     }
-  }
-
-  useEffect(() => {
-    const foundPost = thoughtPosts[slug]
-    if (foundPost) {
-      setPost(foundPost)
-    }
-    window.scrollTo(0, 0)
-  }, [slug])
-
-  if (!post) {
-    return (
-      <div className="min-h-screen bg-dark text-text font-mono">
-        <Navbar />
-        <div className="container mx-auto px-4 py-24 text-center">
-          <h1 className="text-4xl font-bold text-white mb-4 font-departure-mono">Post Not Found</h1>
-          <p className="text-gray-400 mb-8 font-grotesk">The thought you're looking for doesn't exist.</p>
-          <Link 
-            to="/thoughts" 
-            className="text-primary hover:text-primary-dark font-grotesk no-underline"
-          >
-            ← Back to all thoughts
-          </Link>
-        </div>
-        <Footer />
-      </div>
-    )
-  }
-
-  return (
-    <div className="min-h-screen bg-dark text-text font-mono">
-      <Navbar />
-      
-      <article className="container mx-auto px-4 sm:px-6 lg:px-8 py-16 sm:py-20 lg:py-24">
-        {/* Back Link */}
-        <motion.div
-          initial={{ opacity: 0, x: -20 }}
-          animate={{ opacity: 1, x: 0 }}
-          transition={{ duration: 0.6 }}
-          className="mb-8"
-        >
-          <Link 
-            to="/thoughts" 
-            className="text-primary hover:text-primary-dark font-grotesk text-sm no-underline inline-flex items-center transition-colors duration-300"
-          >
-            ← Back to all thoughts
-          </Link>
-        </motion.div>
-
-        {/* Article Header */}
-        <motion.header
-          initial={{ opacity: 0, y: 20 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.8 }}
-          className="mb-12 text-center max-w-4xl mx-auto"
-        >
-          <div className="flex items-center justify-center gap-4 mb-6 text-sm">
-            <span className="text-primary text-xs font-semibold uppercase tracking-wider px-3 py-1 bg-primary/10 rounded-full border border-primary/20">
-              {post.category}
-            </span>
-            <span className="text-text-muted font-mono">{post.date}</span>
-            <span className="text-text-muted font-mono">{post.readTime}</span>
-          </div>
-          
-          <h1 className="text-3xl sm:text-4xl lg:text-5xl font-bold text-white mb-6 leading-tight font-departure-mono">
-            {post.title}
-          </h1>
-        </motion.header>
-
-        {/* Article Content */}
-        <motion.div
-          initial={{ opacity: 0, y: 20 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.8, delay: 0.2 }}
-          className="prose prose-lg prose-invert max-w-4xl mx-auto"
-        >
-          <div 
-            className="thought-content text-gray-300 leading-relaxed font-grotesk"
-            dangerouslySetInnerHTML={{ __html: post.content }}
-          />
-        </motion.div>
-
-        {/* Article Footer */}
-        <motion.footer
-          initial={{ opacity: 0, y: 20 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.8, delay: 0.4 }}
-          className="mt-16 pt-8 border-t border-white/10 text-center"
-        >
-          <div className="max-w-2xl mx-auto">
-            <h3 className="text-xl font-bold text-white mb-4 font-departure-mono">
-              Enjoyed this thought?
-            </h3>
-            <p className="text-gray-400 mb-6 font-grotesk">
-              More random musings about code, design, and the occasional existential crisis.
-            </p>
-            <div className="flex flex-col sm:flex-row gap-4 justify-center">
-              <Link 
-                to="/thoughts" 
-                className="px-6 py-3 bg-primary text-dark font-semibold rounded-lg transition-all duration-300 hover:bg-primary-dark hover:-translate-y-1 font-grotesk no-underline"
-              >
-                Read more thoughts
-              </Link>
-              <a 
-                href="#contact" 
-                className="px-6 py-3 border-2 border-primary text-primary hover:bg-primary hover:text-dark font-semibold rounded-lg transition-all duration-300 hover:-translate-y-1 font-grotesk no-underline"
-              >
-                Get in touch
-              </a>
-            </div>
-          </div>
-        </motion.footer>
-      </article>
-      
-      <Footer />
-    </div>
-  )
 }
-
-export default ThoughtPost
