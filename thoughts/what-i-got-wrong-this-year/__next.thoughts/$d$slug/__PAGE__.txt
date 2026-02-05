@@ -2,5 +2,5 @@
 2:I[98715,["/portfolio/_next/static/chunks/4c80df76ea320708.js","/portfolio/_next/static/chunks/11703ee7cf7ed93b.js","/portfolio/_next/static/chunks/1ae599fbb2875514.js"],"default"]
 3:I[97367,["/portfolio/_next/static/chunks/ff1a16fafef87110.js","/portfolio/_next/static/chunks/694836347d1e5ef3.js"],"OutletBoundary"]
 4:"$Sreact.suspense"
-0:{"buildId":"V95MOVe0j_69r-jhI2Bti","rsc":["$","$1","c",{"children":[["$","$L2",null,{"slug":"what-i-got-wrong-this-year"}],[["$","script","script-0",{"src":"/portfolio/_next/static/chunks/1ae599fbb2875514.js","async":true}]],["$","$L3",null,{"children":["$","$4",null,{"name":"Next.MetadataOutlet","children":"$@5"}]}]]}],"loading":null,"isPartial":false}
+0:{"buildId":"4W_iOsz8Zw5AzIRhYMTCG","rsc":["$","$1","c",{"children":[["$","$L2",null,{"slug":"what-i-got-wrong-this-year"}],[["$","script","script-0",{"src":"/portfolio/_next/static/chunks/1ae599fbb2875514.js","async":true}]],["$","$L3",null,{"children":["$","$4",null,{"name":"Next.MetadataOutlet","children":"$@5"}]}]]}],"loading":null,"isPartial":false}
 5:null
