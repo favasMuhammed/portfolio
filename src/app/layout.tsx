@@ -1,3 +1,4 @@
+import React from 'react';
 import './globals.css';
 import Navbar from '../components/Navbar';
 import ScrollProgress from '../components/ScrollProgress';
@@ -10,6 +11,9 @@ import { inter, jetbrainsMono, spaceMono, spaceGrotesk } from './fonts';
 export const metadata = {
     title: 'Favas | Full Stack Developer',
     description: 'Portfolio of Favas, a Full Stack Developer specializing in React, Node.js, and Python.',
+    icons: {
+        icon: '/portfolio/favicon.svg',
+    },
 };
 
 export default function RootLayout({
